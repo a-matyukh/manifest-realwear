@@ -12,6 +12,19 @@ for (const button of buttons) {
         event.target.classList.add('current')
         const newMain = document.getElementById(`${event.target.innerText.trim().toLowerCase()}`)
         newMain.style.display = 'block'
-
     })
+}
+
+const links = document.querySelectorAll('main a')
+for (const link of links) {
+    link.onclick = () => {
+        window.location = './chat.html'
+    }
+}
+const linksCall = document.querySelectorAll('#call a')
+console.log(linksCall)
+for (const link of linksCall) {
+    link.onclick = () => {
+        window.location = './call.html'
+    }
 }

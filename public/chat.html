@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/app.css">
+    <title>Manifest Realwear / Chat</title>
+</head>
+<body>
+    <header>
+        <button onclick="window.location = './index.html'">← Back</button>
+        <button class="current" style="width: 210px; vertical-align: top;">Contact name</button>
+        <button class="accent" onclick="window.location = './call.html'"><img src="img/call.png"> Call</button>
+        <button onclick="showMessageBoard()">✉️ Message</button>
+    </header>
+    <div>
+        <section>
+            <p class="chat-message">Simple message</p>
+            <span class="status message">11:57PM</span>
+        </section>
+        <section>
+            <p class="chat-message">Simple message</p>
+            <span class="status message">11:57PM</span>
+        </section>
+        <section>
+            <p class="chat-message">Simple message</p>
+            <span class="status message">11:57PM</span>
+        </section>
+    </div>
+    <div id="messageBoard">
+        <div>
+            <button onclick="showMessageBoard()">Cancel</button>
+            <button>Voice</button>
+            <button>Attach</button>
+            <button class="accent" onclick="showMessageBoard()">Send</button>
+        </div>
+        <span>Enter text</span>
+    </div>
+    <script src="js/chat.js"></script>
+</body>
+</html>
