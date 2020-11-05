@@ -31,6 +31,11 @@ button.accent {
     background-color: #479B81;
     box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.3);
 }
+button.current.accent {
+    color: #000000;
+    background-color: #F3F3F3;
+    box-shadow: none;
+}
 
 /* Header */
 header {
