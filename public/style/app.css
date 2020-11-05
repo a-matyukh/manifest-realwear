@@ -135,3 +135,14 @@ section {
 #messageBoard.active {
     top: 0;
 }
+
+
+/* Call */
+
+.call button {
+    font-size: 21px;
+    margin-right: 1px;
+}
+.call button:last-child {
+    float: left;
+}
