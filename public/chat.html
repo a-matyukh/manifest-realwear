@@ -7,24 +7,28 @@
     <title>Manifest Realwear / Chat</title>
 </head>
 <body>
+
     <header>
-        <button onclick="window.location = './index.html'">← Back</button>
-        <button class="current" style="width: 210px; vertical-align: top;">Contact name</button>
-        <button class="accent" onclick="window.location = './call.html'"><img src="img/call.png"> Call</button>
-        <button onclick="showMessageBoard()">✉️ Message</button>
+        <a onclick="window.location = './index.html'">Back</a>
+        <a class="current chat">
+            <img src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg" class="avatar">
+            Rimma Robertson</a>
+        <a onclick="window.location = './call.html'">Call</a>
+        <a onclick="showMessageBoard()">Message</a>
     </header>
+    
     <div>
         <section>
             <p class="chat-message">Simple message</p>
-            <span class="status message">11:57PM</span>
+            <span class="status message">11:57 PM</span>
         </section>
         <section>
             <p class="chat-message">Simple message</p>
-            <span class="status message">11:57PM</span>
+            <span class="status message">11:57 PM</span>
         </section>
         <section>
             <p class="chat-message">Simple message</p>
-            <span class="status message">11:57PM</span>
+            <span class="status message">11:57 PM</span>
         </section>
     </div>
     <div id="messageBoard">
@@ -36,6 +40,7 @@
         </div>
         <span>Enter text</span>
     </div>
+
     <script src="js/chat.js"></script>
 </body>
 </html>

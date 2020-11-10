@@ -1,18 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
 
 body {
-    margin: 20px;
+    margin: 0;
     font-family: 'Roboto', sans-serif;
-    font-size: 27px;
-    background-color: #F3F3F3;
+    font-size: 24px;
+    background-color: #EAE9E5;
+}
+
+a {
+    color: #0099BB;
+    text-decoration: none;
 }
 
 button {
-    height: 60px;
-    font-size: 24px;
+    font-size: 21px;
     text-transform: uppercase;
     font-weight: bold;
-    padding: 10px 30px;
+    padding: 10px 20px;
     margin-right: 20px;
     border: none;
     outline: none;
@@ -21,84 +25,125 @@ button {
     background-color: #F7F7F7;
     box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
 }
-button.current {
-    color: #000000;
-    background-color: #F3F3F3;
-    box-shadow: none;
-}
-button.accent {
-    color: white;
-    background-color: #479B81;
-    box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.3);
-}
-button.current.accent {
-    color: #000000;
-    background-color: #F3F3F3;
-    box-shadow: none;
-}
 
 /* Header */
+
 header {
-    position: sticky;
-    top: 20px;
-    margin-bottom: 40px;
+    height: 65px;
+    background-color: rgba(41, 100, 131, 0.1);
+    margin-bottom: 30px;
 }
-header > button:last-child {
-    margin-right: 0;
+
+header > a {
+    padding: 20px 40px;
+    margin: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    float: left;
+}
+header > a.current {
+    color: black;
+    background-color: #EAE9E5;
+}
+header > a.current.chat {
+    position: relative;
+    top: -10px;
+    text-transform: none;
+    font-weight: normal;
+    width: 250px;
+    height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+header > a:last-child {
     float: right;
 }
-header img {
-    width: 20px;
-    margin-right: 5px;
-}
-header > button:last-child img {
+header .avatar {
+    width: 50px;
+    height: 50px;
+    margin: 0;
     position: relative;
-    top: -3px;
+    left: -15px;
 }
 
-/* Main */
 main {
     display: none;
-    margin-bottom: 70px;
 }
+
+/* Last */
 #last {
-    display: block;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding-left: 10px;
 }
-
-
 
 /* List */
 
 /* Item */
 section {
     margin-left: 30px;
-    padding-bottom: 30px;
-    /* border-bottom: 1px solid #cccccc; */
+    margin-bottom: 20px;
 }
 .avatar {
-    float: left;
-    width: 80px;
-    height: 80px;
+    display: inline-block;
+    vertical-align: middle;
+    width: 70px;
+    height: 70px;
     background-color: #F7F7F7;
-    margin-right: 20px;
+    margin-right: 15px;
     border-radius: 40px;
 }
 .chat-name {
-    display: block;
-    font-size: 30px;
-    text-decoration: none;
-    color: #4D4D4D;
-    margin: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+    font-size: 27px;
 }
 .status {
     color:hsl(0, 0%, 60%);
 }
 
+
+/* Contacts */
+#contacts > span, #call > span {
+    margin: 0 40px;
+}
+#contacts > div, #call > div {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding-left: 40px;
+}
+#contacts section, #call section {
+    margin-left: 0;
+    margin-bottom: 30px;
+}
+#contacts section > img, #call section > img {
+    float: left;
+}
+#contacts section > a, #call section > a {
+    display: block;
+}
+#contacts section > span, #call section > span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Call */
+#call > h3 {
+    margin: 40px;
+}
+
+/* Menu */
+#menu {
+    padding: 0 40px;
+}
+
+
 /* Chat */
 .chat-message {
-    background-color: #f9f9f9;
+    background-color: #C9C8C6;
     width: 80%;
-    padding: 20px;
+    padding: 12px 15px;
     margin-top: 5px;
     margin-bottom: 5px;
     border-radius: 10px;
@@ -106,7 +151,6 @@ section {
 .status.message {
     font-size: 21px;
 }
-
 
 /* messageBoard */
 #messageBoard {
@@ -125,24 +169,23 @@ section {
 }
 #messageBoard > div {
     position: relative;
-    top: -30px;
+    top: -40px;
     text-align: center;
 }
-/* #messageBoard span {
-    padding: 60px 20px 30px 20px;
-    background-color: white;
-} */
 #messageBoard.active {
     top: 0;
 }
-
+button.accent {
+    color: white;
+    background-color: #479B81;
+    box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.3);
+}
 
 /* Call */
-
-.call button {
-    font-size: 21px;
-    margin-right: 1px;
+.call {
+    padding: 15px;
+    height: 50px;
 }
-.call button:last-child {
-    float: left;
+.call button {
+    margin-right: 0;
 }

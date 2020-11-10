@@ -1,17 +1,22 @@
-const buttons = document.querySelectorAll('header button')
-for (const button of buttons) {
-    button.addEventListener('click', event => {
-        buttons.forEach(button => {
-            if (button.classList.contains('current')) {
-                button.classList.remove('current')
-                const main = document.getElementById(`${button.innerText.trim().toLowerCase()}`)
-                main.style.display = 'none'
-            }
+const tabs = document.querySelectorAll('header a')
+for (const tab of tabs) {
+    tab.addEventListener('click', event => {
+        tabs.forEach(tab => {
+            if (tab.classList.contains('current')) {
+                tab.classList.remove('current')
+                event.target.classList.add('current')
 
+                const main = document.getElementById(`${tab.innerText.trim().toLowerCase()}`)
+                main.style.display = 'none'
+
+                const newMain = document.getElementById(`${event.target.innerText.trim().toLowerCase()}`)
+                if (newMain.id == 'last') {
+                    newMain.style.display = 'grid'
+                } else {
+                    newMain.style.display = 'block'
+                }
+            }
         })
-        event.target.classList.add('current')
-        const newMain = document.getElementById(`${event.target.innerText.trim().toLowerCase()}`)
-        newMain.style.display = 'block'
     })
 }
 
