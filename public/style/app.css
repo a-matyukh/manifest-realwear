@@ -40,7 +40,8 @@ button {
     border: none;
     outline: none;
     border-radius: 30px;
-    color: #4D4D4D;
+    /* color: #4D4D4D; */
+    color: var(--voice);
     background-color: #F7F7F7;
     box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
 }
