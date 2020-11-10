@@ -1,15 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
 
+:root {
+    --bg: #f3f3f3;
+    --voice:  #0099BB;
+    --red:  #B54C4C;
+    /* background-color: #EAE9E5; */
+}
+
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
     font-size: 24px;
-    background-color: #EAE9E5;
+    background-color: var(--bg);
 }
 
 a {
     color: #0099BB;
     text-decoration: none;
+}
+a.button {
+    color: white;
+    background-color: var(--voice);
+    border-radius: 30px;
+    padding: 10px 25px;
+    margin-left: 20px;
+    margin-top: 14px;
+    box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.3);
+}
+.icon {
+    width: 20px;
 }
 
 button {
@@ -29,13 +48,13 @@ button {
 /* Header */
 
 header {
-    height: 65px;
+    height: 80px;
     background-color: rgba(41, 100, 131, 0.1);
     margin-bottom: 30px;
 }
 
 header > a {
-    padding: 20px 40px;
+    padding: 26px 40px;
     margin: 0;
     font-weight: bold;
     text-transform: uppercase;
@@ -43,7 +62,7 @@ header > a {
 }
 header > a.current {
     color: black;
-    background-color: #EAE9E5;
+    background-color: var(--bg);
 }
 header > a.current.chat {
     position: relative;
@@ -177,8 +196,12 @@ section {
 }
 button.accent {
     color: white;
-    background-color: #479B81;
+    background-color: var(--voice);
+    /* background-color: #479B81; */
     box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.3);
+}
+button.accent.red {
+    background-color: var(--red);
 }
 
 /* Call */
