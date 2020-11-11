@@ -160,6 +160,10 @@ div.avatar > span {
     position: relative;
     top: 18px;
 }
+div.avatar.small > span {
+    top: 12px;
+    font-size: 24px;
+}
 .chat-name {
     display: inline-block;
     vertical-align: middle;
