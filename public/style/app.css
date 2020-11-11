@@ -95,6 +95,7 @@ main {
     top: -50px;
     left: 39%;
     z-index: 10;
+    transition: .3s;
 }
 #scrollToTop.active {
     top: 30px;

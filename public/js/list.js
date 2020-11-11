@@ -66,8 +66,10 @@ fetch("./js/last.json")
 let header = document.getElementsByTagName('header')[0]
 console.dir(header)
 document.addEventListener('scroll' , e => {
-    if (document.body.scrollTop > 20) {
-        console.log(e)
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        scrollToTop.classList.add('active')
+    } else {
+        scrollToTop.classList.remove('active')
     }
 })
 
