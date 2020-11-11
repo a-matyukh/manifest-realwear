@@ -62,7 +62,7 @@ fetch("./js/last.json")
     last.innerHTML = html
 })
 
-
+// Scroll to top
 let header = document.getElementsByTagName('header')[0]
 document.addEventListener('scroll' , e => {
     if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
@@ -73,6 +73,13 @@ document.addEventListener('scroll' , e => {
 })
 
 
+// const contacts = [
+//     name,
+//     occupacy,
+//     online,
+        // avatar
+// ]
+
 const links = document.querySelectorAll('main a')
 for (const link of links) {
     link.onclick = () => {
@@ -80,6 +87,8 @@ for (const link of links) {
     }
 }
 
+
+// Call
 const linksCall = document.querySelectorAll('#call a')
 for (const link of linksCall) {
     link.onclick = () => {

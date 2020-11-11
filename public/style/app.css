@@ -188,7 +188,7 @@ div.avatar.small > span {
     margin-left: 0;
     margin-bottom: 30px;
 }
-#contacts section > img, #call section > img {
+#contacts section > div, #call section > div {
     float: left;
 }
 #contacts section > a, #call section > a {
