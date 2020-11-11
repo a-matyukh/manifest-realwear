@@ -29,6 +29,12 @@ a.button {
 }
 .icon {
     width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-size: cover;
+}
+.icon-call {
+    background-image: url(../img/phone.svg);
 }
 
 button {
@@ -64,6 +70,11 @@ header > a.current {
     color: black;
     background-color: var(--bg);
 }
+header > a.current .icon-call {
+    filter: invert(60%);
+}
+
+
 header > a.current.chat {
     position: relative;
     top: -10px;
