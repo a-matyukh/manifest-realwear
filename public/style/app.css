@@ -87,13 +87,24 @@ header .avatar {
 
 main {
     display: none;
+    padding-bottom: 70px;
 }
 
 /* Last */
 #last {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 48% 52%;
     padding-left: 10px;
+}
+section {
+    position: relative;
+}
+section > button {
+    padding: 10px 15px;
+    position: absolute;
+    top: -20px;
+    left: -15px;
+    z-index: 10;
 }
 
 /* List */
@@ -108,9 +119,20 @@ section {
     vertical-align: middle;
     width: 70px;
     height: 70px;
-    background-color: #F7F7F7;
+    background-color: #C4C4C4;
     margin-right: 15px;
     border-radius: 40px;
+}
+div.avatar { 
+    text-align: center;
+}
+div.avatar > span {
+    color: #296483;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    position: relative;
+    top: 18px;
 }
 .chat-name {
     display: inline-block;

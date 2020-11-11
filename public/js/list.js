@@ -1,3 +1,4 @@
+//////////////////////////////////////////////// Header
 const tabs = document.querySelectorAll('header a')
 for (const tab of tabs) {
     tab.addEventListener('click', event => {
@@ -24,14 +25,42 @@ for (const tab of tabs) {
     })
 }
 
+//////////////////////////////////////////////// List
+///////////////////////////////// Last
+fetch("./js/last.json")
+.then(res => res.json())
+.then(data => {
+    let html = ``;
+    let key = 1;
+    for (const chat of data) {
+        let avatar = `<img src="./img/group-chat.png" class="avatar">`
+        if (chat.single) {
+            avatar = `<div class="avatar"><span>RW</span></div>`
+        } else {
+            avatar = `<img src="./img/group-chat.png" class="avatar"></img>`
+        }
+        let section = `
+            <section>
+                <button>${key}</button>
+                ${avatar}
+                <a href='./chat.html' class="chat-name">${chat.name}</a>
+            </section>
+        `
+        key++
+        html += section
+    }
+    last.innerHTML = html
+})
+
+
 const links = document.querySelectorAll('main a')
 for (const link of links) {
     link.onclick = () => {
         window.location = './chat.html'
     }
 }
+
 const linksCall = document.querySelectorAll('#call a')
-console.log(linksCall)
 for (const link of linksCall) {
     link.onclick = () => {
         window.location = './call.html'
