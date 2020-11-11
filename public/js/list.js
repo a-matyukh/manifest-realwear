@@ -9,10 +9,10 @@ for (const tab of tabs) {
                     tab.classList.remove('current')
                     event.target.classList.add('current')
     
-                    const main = document.getElementById(`${tab.innerText.trim().toLowerCase()}`)
+                    const main = document.getElementById(`${tab.innerText.trim().toLowerCase().replace(/\s/g, '')}`)
                     main.style.display = 'none'
     
-                    const newMain = document.getElementById(`${event.target.innerText.trim().toLowerCase()}`)
+                    const newMain = document.getElementById(`${event.target.innerText.trim().toLowerCase().replace(/\s/g, '')}`)
                     if (newMain.id == 'last') {
                         newMain.style.display = 'grid'
                     } else {
