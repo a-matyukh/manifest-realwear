@@ -27,15 +27,25 @@ for (const tab of tabs) {
 
 //////////////////////////////////////////////// List
 ///////////////////////////////// Last
+function makeDoubleLettersAva(name) {
+    let words = name.split(' ')
+    let letters = ``
+    for (const word of words) {
+        let letter = word.charAt(0).toUpperCase()
+        letters += letter
+    }
+    return letters
+}
 fetch("./js/last.json")
 .then(res => res.json())
 .then(data => {
-    let html = ``;
-    let key = 1;
+    let html = ``
+    let key = 1
     for (const chat of data) {
         let avatar = `<img src="./img/group-chat.png" class="avatar">`
         if (chat.single) {
-            avatar = `<div class="avatar"><span>RW</span></div>`
+            let sign = makeDoubleLettersAva(chat.name);
+            avatar = `<div class="avatar"><span>${sign}</span></div>`
         } else {
             avatar = `<img src="./img/group-chat.png" class="avatar"></img>`
         }
@@ -50,6 +60,15 @@ fetch("./js/last.json")
         html += section
     }
     last.innerHTML = html
+})
+
+
+let header = document.getElementsByTagName('header')[0]
+console.dir(header)
+document.addEventListener('scroll' , e => {
+    if (document.body.scrollTop > 20) {
+        console.log(e)
+    }
 })
 
 
