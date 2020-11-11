@@ -60,23 +60,22 @@ header {
     margin-bottom: 30px;
 }
 
-header > a {
+header a {
     padding: 26px 40px;
     margin: 0;
     font-weight: bold;
     text-transform: uppercase;
     float: left;
 }
-header > a.current {
+header a.current {
     color: black;
     background-color: var(--bg);
 }
-header > a.current .icon-call {
+header a.current .icon-call {
     filter: invert(60%);
 }
 
-
-header > a.current.chat {
+header a.current.chat {
     position: relative;
     top: -10px;
     text-transform: none;
@@ -86,7 +85,7 @@ header > a.current.chat {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-header > a:last-child {
+header > *:last-child {
     float: right;
 }
 header .avatar {
@@ -96,6 +95,9 @@ header .avatar {
     position: relative;
     left: -15px;
 }
+
+
+/* Main */
 
 main {
     display: none;
