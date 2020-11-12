@@ -71,7 +71,7 @@ document.addEventListener('scroll' , e => {
         scrollToTop.classList.remove('active')
     }
 })
-
+scrollToTop.onclick = () => window.scrollTo(0,0)
 
 // const contacts = [
 //     name,
