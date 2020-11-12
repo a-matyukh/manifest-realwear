@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
 @import './welcome.css';
+@import './login.css';
 
 :root {
     --bg: #f3f3f3;
@@ -7,6 +8,8 @@
     --red:  #B54C4C;
     --primary: #296483;
     --primary-dark: #18394D;
+    --border: 2px solid  #FFAE00;
+    --border-white: 1px solid  white;
 }
 
 body {

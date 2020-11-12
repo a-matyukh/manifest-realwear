@@ -18,7 +18,7 @@
 }
 #splash > button:nth-child(3) {
     background: none;
-    border: 2px solid  #FFAE00;
+    border: var(--border);
 }
 #splash > div {
     position: relative;
