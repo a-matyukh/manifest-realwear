@@ -19,7 +19,7 @@
 }
 #splash button.help {
     position: fixed;
-    left: 520px;
+    left: 570px;
     width: 100px;
     padding: 5px;
     color: var(--primary);
