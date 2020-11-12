@@ -24,6 +24,7 @@ header a.current.chat {
     position: relative;
     top: -10px;
     text-transform: none;
+    font-size: 21px;
     font-weight: normal;
     width: 250px;
     height: 38px;

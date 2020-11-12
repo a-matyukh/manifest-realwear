@@ -65,8 +65,8 @@ div.avatar > span {
     top: 18px;
 }
 div.avatar.small > span {
-    top: 12px;
-    font-size: 24px;
+    top: 11px;
+    font-size: 21px;
 }
 .chat-name {
     display: inline-block;
