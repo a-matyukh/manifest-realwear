@@ -10,10 +10,13 @@
 
     <div id="splash" class="login">
         <img src="./img/m-c.png">
-        <input type="text" placeholder="Domain">
-        <input type="text" placeholder="User Name">
-        <input type="password" placeholder="Password">
+        <input type="text" placeholder="Domain" id="domain">
+        <input type="text" placeholder="User Name" id="username">
+        <input type="password" placeholder="Password" id="password">
         <button onclick="window.location = './lists.html'">Login</button>
+        <button class="help" onclick="document.getElementById('domain').focus()">Domain</button>
+        <button class="help" onclick="document.getElementById('username').focus()">User Name</button>
+        <button class="help" onclick="document.getElementById('password').focus()">Password</button>
     </div>
 
 </body>

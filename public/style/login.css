@@ -17,3 +17,21 @@
     color: white;
     opacity: .7;
 }
+#splash button.help {
+    position: fixed;
+    left: 520px;
+    width: 100px;
+    padding: 5px;
+    color: var(--primary);
+    background-color: white;
+    font-size: 14px;
+}
+#splash button.help:nth-child(6) {
+    top: 118px;
+}
+#splash button.help:nth-child(7) {
+    top: 195px;
+}
+#splash button.help:nth-child(8) {
+    top: 265px;
+}
