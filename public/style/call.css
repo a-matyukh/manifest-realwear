@@ -1,0 +1,9 @@
+/* Call */
+.call {
+    padding: 15px;
+    height: 50px;
+    background: none;
+}
+.call button {
+    margin-right: 0;
+}
