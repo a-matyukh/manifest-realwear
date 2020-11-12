@@ -8,7 +8,7 @@
 
 :root {
     --bg: #f3f3f3;
-    --voice:  #0099BB;
+    --voice:  #479B81;
     --red:  #B54C4C;
     --primary: #296483;
     --primary-dark: #18394D;
@@ -55,7 +55,6 @@ a.button {
 button {
     font-size: 21px;
     text-transform: uppercase;
-    /* font-weight: bold; */
     padding: 10px 20px;
     margin-right: 20px;
     border: none;

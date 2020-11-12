@@ -1,8 +1,8 @@
 //////////////////////////////////////////////// Header
-const tabs = document.querySelectorAll('header a')
+const tabs = document.querySelectorAll('#tabs button')
 for (const tab of tabs) {
     tab.addEventListener('click', event => {
-        if (event.target.nodeName == "A") {
+        if (event.target.nodeName == "BUTTON") {
             tabs.forEach(tab => {
                 if (tab.classList.contains('current')) {
     
@@ -51,9 +51,9 @@ fetch("./js/last.json")
         }
         let section = `
             <section>
-                <button onclick="window.location = './chat.html'">${key}</button>
+                <button>${key}</button>
                 ${avatar}
-                <a href='./chat.html' class="chat-name">${chat.name}</a>
+                <button class="chat-name">${chat.name}</button>
             </section>
         `
         key++
@@ -80,12 +80,21 @@ scrollToTop.onclick = () => window.scrollTo(0,0)
         // avatar
 // ]
 
-const links = document.querySelectorAll('main a')
-for (const link of links) {
-    link.onclick = () => {
-        window.location = './chat.html'
+// const links = document.querySelectorAll('main a')
+// for (const link of links) {
+//     link.onclick = () => {
+//         window.location = './chat.html'
+//     }
+// }
+setTimeout(() => {
+    const links = document.querySelectorAll('#last button')
+    console.log(links)
+    for (const link of links) {
+        link.onclick = () => {
+            window.location = './chat.html'
+        }
     }
-}
+}, 100)
 
 
 // Call

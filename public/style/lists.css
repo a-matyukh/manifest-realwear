@@ -1,3 +1,23 @@
+/* Tabs */
+#tabs {
+    height: 80px;
+    background-color: var(--primary-dark);
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-around;
+}
+#tabs > button {
+    color: #eae9e5;
+    font-weight: bold;
+    background: none;
+    border-radius: 0;
+    padding: 0 45px;
+    margin-right: 0;
+}
+#tabs > button.current {
+    background: rgba(0, 0, 0, .25);
+}
+
 /* Main */
 
 main {
@@ -39,7 +59,7 @@ div.avatar {
 div.avatar > span {
     color: #296483;
     text-align: center;
-    font-size: 30px;
+    font-size: 27px;
     font-weight: bold;
     position: relative;
     top: 18px;
@@ -52,7 +72,13 @@ div.avatar.small > span {
     display: inline-block;
     vertical-align: middle;
     text-overflow: ellipsis;
-    font-size: 27px;
+    font-size: 24px;
+    background: none;
+    box-shadow: none;
+    /* position: absolute; */
+    top: 10px;
+    left: 70px;
+    text-transform: none;
 }
 .status {
     color:hsl(0, 0%, 60%);
