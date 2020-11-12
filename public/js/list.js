@@ -51,7 +51,7 @@ fetch("./js/last.json")
         }
         let section = `
             <section>
-                <button>${key}</button>
+                <button onclick="window.location = './chat.html'">${key}</button>
                 ${avatar}
                 <a href='./chat.html' class="chat-name">${chat.name}</a>
             </section>
