@@ -7,22 +7,14 @@
     <title>Manifest Realwear / List</title>
 </head>
 <body>
+    
     <div id="tabs">
-        <button class="current">Last</button>
+        <button class="current" id="backAnchor">Last</button>
         <button>Contacts</button>
         <button><a class="button"><span class="icon icon-call"></span> Call</a></button>
         <button>My Jobs</button>
         <button>Menu</button>
     </div>
-    <!-- <header>
-        <a class="current"><button>Last</button></a>
-        <a>Contacts</a>
-        <a class="button"><span class="icon icon-call"></span> Call</a>
-        <div>
-            <a>My Jobs</a>
-            <a>Menu</a>
-        </div>
-    </header> -->
     
     <main id="last"></main>
     <main id="contacts">
@@ -105,7 +97,10 @@
         </div>
     </main>
     <main id="call">
-        <h3>Say who to call:</h3>
+        <h3>
+            Say who to call:
+            <button style="float: right; position: relative; top: -20px; left: 30px" onclick="hideModal()">Close</button>
+        </h3>
         <span class="status">Online (18)</span>
         <span class="status" style="float: right;">Sort ⇳</span>
         <br><br>

@@ -88,7 +88,6 @@ scrollToTop.onclick = () => window.scrollTo(0,0)
 // }
 setTimeout(() => {
     const links = document.querySelectorAll('#last button')
-    console.log(links)
     for (const link of links) {
         link.onclick = () => {
             window.location = './chat.html'
@@ -103,4 +102,16 @@ for (const link of linksCall) {
     link.onclick = () => {
         window.location = './call.html'
     }
+}
+
+function hideModal() {
+    let evt = new MouseEvent("click", {
+        view: window,
+        bubbles: true,
+        cancelable: true,
+        clientX: 220,
+        clientY: 40
+    })
+    ele = document.getElementById("backAnchor");
+    ele.dispatchEvent(evt);
 }
