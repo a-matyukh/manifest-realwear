@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+@import './welcome.css';
 
 :root {
     --bg: #f3f3f3;
     --voice:  #0099BB;
     --red:  #B54C4C;
     --primary: #296483;
+    --primary-dark: #18394D;
 }
 
 body {
@@ -57,6 +59,7 @@ button {
     background-color: #F7F7F7;
     box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
 }
+
 
 /* Header */
 
