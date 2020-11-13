@@ -80,16 +80,16 @@ scrollToTop.onclick = () => window.scrollTo(0,0)
         // avatar
 // ]
 
-// const links = document.querySelectorAll('main a')
-// for (const link of links) {
-//     link.onclick = () => {
-//         window.location = './chat.html'
-//     }
-// }
+const links = document.querySelectorAll('main a')
+for (const link of links) {
+    link.onclick = () => {
+        window.location = './chat.html'
+    }
+}
 setTimeout(() => {
-    const links = document.querySelectorAll('#last button')
-    for (const link of links) {
-        link.onclick = () => {
+    const buttons = document.querySelectorAll('#last button')
+    for (const button of buttons) {
+        button.onclick = () => {
             window.location = './chat.html'
         }
     }
