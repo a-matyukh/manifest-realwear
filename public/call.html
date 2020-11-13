@@ -4,26 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/app.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <title>Manifest Realwear / Call</title>
 </head>
 <body style="background-image: url(./img/videostream.png); background-size: cover;">
-    <header class="call">
-        <button onclick="window.location = './chat.html'">
-            <img class="icon icon-back" src="./img/arrow-left-blue.png">
-            Back
-        </button>
-        <button>Take photo</button>
-        <button>Video off</button>
-        <button>Record Call</button>
-        <button class="red" onclick="window.location = './chat.html'">End Call</button>
-        <button>More <span class="icon icon-arrows"></span></button>
-        <!-- <button>Mic off</button> -->
-        <!-- <button>Share asset info</button> -->
-        <!-- <button>Switch videosource</button> -->
-    </header>
     <div id="callStatus">
         <h3>Roberta Fox</h3>
         <p>Calling 0:11</p>
     </div>
+    <div id="app">
+        <span v-if="mainView">
+            <header class="call">
+                <button onclick="window.location = './chat.html'">
+                    <img class="icon icon-back" src="./img/arrow-left-blue.png">
+                    Back
+                </button>
+                <button>Take photo</button>
+                <button>Video off</button>
+                <button class="red" onclick="window.location = './chat.html'">End Call</button>
+                <button onclick="app.changeView()">More <span class="icon icon-arrows"></span></button>
+            </header>
+        </span>
+        <span v-else>
+            <div id="moreOptions">
+                <button>Record Call</button>
+                <button>Mic off</button>
+                <button>Share asset info</button>
+                <button onclick="app.changeView()"><span class="icon icon-arrows reverse"></span> Less</button>
+                <!-- <button>Switch videosource</button> -->
+            </div>
+        </span>
+    </div>
+    <script>
+        let app = new Vue({
+        el: '#app',
+        data: {
+            mainView: false
+        },
+        methods: {
+            changeView() {
+                this.mainView = !this.mainView
+            }
+        }
+        })
+    </script>
 </body>
 </html>

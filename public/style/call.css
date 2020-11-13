@@ -18,6 +18,21 @@ img.icon-back {
     height: 30px;
 }
 
+#moreOptions {
+    padding: 17px;
+}
+#moreOptions button {
+    margin-right: 5px;
+}
+#moreOptions button:last-child {
+    float: right;
+}
+.reverse {
+    position: relative;
+    top: 2px;
+    transform: rotate(180deg);
+}
+
 #callStatus {
     position: fixed;
     left: 20px;
