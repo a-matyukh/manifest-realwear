@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <link rel="stylesheet" href="style/app.css">
-    <script type="text/javascript" src="./js/wearml_engine-min.js"></script> 
     <title>Manifest Realwear / List</title>
 </head>
 <body>
@@ -185,12 +184,32 @@
         <button>Select job</button>
     </main>
     <main id="menu">
-        <h1>Manifest</h1>
-        <button>Log Out</button>
+        <div id="userInfo">
+            <div>
+                <img class="userAvatar" src="./img/nick.png">
+            </div>
+            <div>
+                <h1>Nick Warren</h1>
+                <span>nick.warren@mail.com</span>
+            </div>
+            <div>
+                <button class="big right">
+                    Logout
+                    <img class="icon" src="./img/exit.png">
+                </button>
+            </div>
+        </div>
+        <div>
+            <p>Manifest Connect ver. 1.0 </p>
+            <span>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</span>
+        </div>
+
     </main>
 
     <button id="scrollToTop">Scroll To Top</button>
 
     <script src="js/list.js"></script>
+    <script type="text/javascript" src="./js/wearml_engine-min.js"></script> 
+
 </body>
 </html>

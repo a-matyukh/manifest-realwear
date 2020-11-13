@@ -75,3 +75,15 @@ button.deaccent {
 button.red {
     color: var(--red);
 }
+button.big {
+    font-size: 27px;
+    padding: 15px 30px;
+}
+.big .icon {
+    vertical-align: top;
+    width: 30px;
+    height: 30px;
+}
+.right {
+    float: right;
+}

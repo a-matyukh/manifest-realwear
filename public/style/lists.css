@@ -144,3 +144,27 @@ section > button {
 #menu, #myjobs {
     padding: 0 40px;
 }
+
+#menu {
+    color: #555555;
+}
+#userInfo {
+    display: grid;
+    grid-template-columns: 15% 60% 25%;
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+#userInfo h1 {
+    color: var(--primary);
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: normal;
+}
+#userInfo button {
+    margin-right: 0;
+    
+}
+.userAvatar {
+    width: 120px;
+    height: 120px;
+}
