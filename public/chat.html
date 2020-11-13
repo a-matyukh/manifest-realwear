@@ -8,13 +8,16 @@
 </head>
 <body>
 
-    <header>
-        <a onclick="window.location = './lists.html'">Back</a>
+    <header id="chatHeader">
+        <a onclick="window.location = './lists.html'">
+            <img src="./img/arrow-left.png" class="icon back">
+            <button class="back">Back</button>
+        </a>
         <a class="current chat">
             <div class="avatar small"><span>RR</span></div>
             Rimma Robertson</a>
-        <a class="button" onclick="window.location = './call.html'"><img src="./img/phone.png" class="icon"> Call</a>
-        <button style="margin-top: 15px;" onclick="showMessageBoard()">Message</button>
+        <button onclick="showMessageBoard()">Message</button>
+        <button class="accent" onclick="window.location = './call.html'"><img src="./img/phone.png" class="icon"> Call</button>
     </header>
     
     <div>
@@ -33,10 +36,10 @@
     </div>
     <div id="messageBoard">
         <div>
-            <button onclick="showMessageBoard()">Cancel</button>
             <button>Voice</button>
             <button>Attach</button>
-            <button class="accent" onclick="showMessageBoard()">Send</button>
+            <button class="accent blue" onclick="showMessageBoard()">Send</button>
+            <button onclick="showMessageBoard()">Cancel</button>
         </div>
         <span>Enter text</span>
     </div>

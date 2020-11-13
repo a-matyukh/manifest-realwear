@@ -1,4 +1,26 @@
-/* Chat */
+#chatHeader img.icon.back {
+    position: absolute;
+    top: 24px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+}
+#chatHeader > button {
+    margin-top: 15px;
+    font-weight: bold;
+    float: right;
+}
+#chatHeader > a:first-child {
+    padding: 19px 10px 19px 25px;
+}
+button.back {
+    background: none;
+    box-shadow: none;
+    color: white;
+    font-weight: bold;
+    margin-right: 0;
+}
+
 header .avatar {
     width: 50px;
     height: 50px;
@@ -7,15 +29,17 @@ header .avatar {
     left: -15px;
 }
 .chat-message {
-    background-color: #C9C8C6;
-    width: 80%;
+    background-color: #EAE9E5;
+    width: 25%;
     padding: 12px 15px;
     margin-top: 5px;
     margin-bottom: 5px;
     border-radius: 10px;
+    font-size: 21px;
 }
 .status.message {
-    font-size: 21px;
+    color: #555555;
+    font-size: 18px;
 }
 
 
@@ -32,7 +56,7 @@ header .avatar {
     box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.3);
     transition: .3s;
     margin-left: 25px;
-    /* backdrop-filter: blur(10px); */
+    color: #555555;
 }
 #messageBoard > div {
     position: relative;
@@ -41,4 +65,10 @@ header .avatar {
 }
 #messageBoard.active {
     top: 0;
+}
+#messageBoard button {
+    background-color: white;
+}
+#messageBoard button.blue {
+    background-color: #0099BB;
 }
