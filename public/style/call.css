@@ -5,5 +5,33 @@
     background: none;
 }
 .call button {
+    padding: 10px 15px;
     margin-right: 0;
+}
+.call button:first-of-type {
+    padding: 2px 15px 10px 5px;
+}
+img.icon-back {
+    position: relative;
+    top: 7px;
+    width: 30px;
+    height: 30px;
+}
+
+#callStatus {
+    position: fixed;
+    left: 20px;
+    bottom: 60px;
+    color: white;
+}
+#callStatus * {
+    margin: 0;
+    padding: 5px 10px;
+}
+#callStatus h3 {
+    font-weight: normal;
+}
+#callStatus p {
+    text-transform: uppercase;
+    opacity: .7;
 }
