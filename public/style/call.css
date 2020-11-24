@@ -1,14 +1,16 @@
 /* Call */
-.call {
+#mainOptions {
+    position: fixed;
     padding: 15px;
     height: 50px;
     background: none;
+    transition: .2s;
 }
-.call button {
+#mainOptions button {
     padding: 10px 15px;
     margin-right: 0;
 }
-.call button:first-of-type {
+#mainOptions button:first-of-type {
     padding: 2px 15px 10px 5px;
 }
 img.icon-back {
@@ -19,14 +21,29 @@ img.icon-back {
 }
 
 #moreOptions {
+    position: fixed;
     padding: 17px;
+    transition: .2s;
 }
 #moreOptions button {
     margin-right: 5px;
 }
-#moreOptions button:last-child {
-    float: right;
+
+
+.visible {
+    top: 0;
 }
+.unvisible {
+    top: -110px;
+}
+
+
+#changer {
+    position: fixed;
+    top: 20px;
+    right: 0;
+}
+
 .reverse {
     position: relative;
     top: 2px;

@@ -13,37 +13,47 @@
         <p>Calling 0:11</p>
     </div>
     <div id="app">
-        <span v-if="mainView">
-            <header class="call">
-                <button onclick="window.location = './chat.html'">
-                    <img class="icon icon-back" src="./img/arrow-left-blue.png">
-                    Back
-                </button>
-                <button>Take photo</button>
-                <button>Video off</button>
-                <button class="red" onclick="window.location = './chat.html'">End Call</button>
-                <button onclick="app.changeView()">More <span class="icon icon-arrows"></span></button>
-            </header>
-        </span>
-        <span v-else>
-            <div id="moreOptions">
-                <button>Record Call</button>
-                <button>Mic off</button>
-                <button>Share asset info</button>
-                <button onclick="app.changeView()"><span class="icon icon-arrows reverse"></span> Less</button>
-                <!-- <button>Switch videosource</button> -->
-            </div>
-        </span>
+        <div id="mainOptions" :class="mainStyle">
+            <button onclick="window.location = './chat.html'">
+                <img class="icon icon-back" src="./img/arrow-left-blue.png">
+                Back
+            </button>
+            <button>Take photo</button>
+            <button>Video off</button>
+            <button class="red" onclick="window.location = './chat.html'">End Call</button>
+        </div>
+        <div id="moreOptions" :class="moreStyle">
+            <button>Record Call</button>
+            <button>Mic off</button>
+            <button>Share asset info</button>
+        </div>
+        <button id="changer" onclick="app.changeView()">
+            <span v-if="mainView">
+                More <span class="icon icon-arrows"></span>
+            </span>
+            <span v-else>
+                <span class="icon icon-arrows reverse"></span> Less
+            </span>
+        </button>
     </div>
     <script>
         let app = new Vue({
         el: '#app',
         data: {
-            mainView: true
+            mainView: true,
+            mainStyle: 'visible',
+            moreStyle: 'unvisible'
         },
         methods: {
             changeView() {
                 this.mainView = !this.mainView
+                if (this.mainView) {
+                    this.mainStyle = 'visible'
+                    this.moreStyle = 'unvisible'
+                } else {
+                    this.mainStyle = 'unvisible'
+                    this.moreStyle = 'visible'
+                }
             }
         }
         })

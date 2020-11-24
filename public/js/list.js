@@ -73,12 +73,6 @@ document.addEventListener('scroll' , e => {
 })
 scrollToTop.onclick = () => window.scrollTo(0,0)
 
-// const contacts = [
-//     name,
-//     occupacy,
-//     online,
-        // avatar
-// ]
 
 const links = document.querySelectorAll('main a')
 for (const link of links) {
