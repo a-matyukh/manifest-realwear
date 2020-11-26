@@ -53,6 +53,9 @@ section {
     margin-right: 15px;
     border-radius: 40px;
 }
+.avatar > img {
+    width: 100%;
+}
 div.avatar { 
     text-align: center;
 }
@@ -70,17 +73,38 @@ div.avatar.small > span {
 }
 .chat-name {
     display: inline-block;
-    vertical-align: middle;
+    /* vertical-align: middle; */
     text-overflow: ellipsis;
     font-size: 24px;
     background: none;
     box-shadow: none;
-    /* position: absolute; */
-    top: 10px;
+    /* position: relative; */
+    top: -5px;
     left: 70px;
     text-transform: none;
 }
 .status {
+    color:hsl(0, 0%, 60%);
+}
+span.ready {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: aqua;
+    border-radius: 10px;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
+.ready.online {
+    background-color: #479B81;
+}
+.ready.offline {
+    background-color: #B54C4C;
+}
+.occupacy {
+    position: relative;
+    top: 20px;
     color:hsl(0, 0%, 60%);
 }
 
@@ -101,6 +125,9 @@ section > button {
     left: -15px;
     z-index: 10;
 }
+#last .chat-name {
+    top: 9px;
+}
 
 /* Contacts */
 #contacts > span, #call > span {
@@ -114,9 +141,6 @@ section > button {
 #contacts section, #call section {
     margin-left: 0;
     margin-bottom: 30px;
-}
-#contacts section > div, #call section > div {
-    float: left;
 }
 #contacts section > a, #call section > a {
     display: block;

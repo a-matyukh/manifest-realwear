@@ -1,4 +1,4 @@
-[
+const last = [
     {
         "name": "Josef Malrose",
         "single": true

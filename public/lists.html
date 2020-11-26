@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <link rel="stylesheet" href="style/app.css">
     <script type="text/javascript" src="./js/wearml_engine-min.js"></script> 
     <title>Manifest Realwear / List</title>
 </head>
 <body>
-    
+
     <div id="tabs">
         <button class="current" id="backAnchor">Last</button>
         <button>Contacts</button>
@@ -17,83 +16,35 @@
         <button>Menu</button>
     </div>
     
-    <main id="last"></main>
+<div id="app" v-cloak>
+
+    <main id="last">
+        <section v-for="(chat, i) in chats">
+            <button>{{i+1}}</button>
+            <template v-if='chat.single'>
+                <div class="avatar"><span>{{makeDoubleLettersAva(chat.name)}}</span></div>
+            </template>
+            <template v-else>
+                <img src="./img/group-chat.png" class="avatar"></img>
+            </template>
+            <button class="chat-name" onclick="window.location = './chat.html'">{{chat.name}}</button>
+        </section>
+    </main>
     <main id="contacts">
         <span class="status">Online (19)</span>
         <span class="status" style="float: right;">Sort ⇳</span>
         <br><br>
         <div>
-            <section>
-                <button>1</button>
-                <div class="avatar"><span>DR</span></div>
-                <a href="#" class="chat-name">Darlene Robertson</a>
-                <span class="status">Electrician</span> 
-            </section>
-            <section>
-                <button>2</button>
-                <div class="avatar"><span>DR</span></div>
-                <a href="#" class="chat-name">Don Russell</a>
-                <span class="status">Plumbing master</span>
-            </section>
-            <section>
-                <button>3</button>
-                <div class="avatar"><span>JM</span></div>
-                <a href="#" class="chat-name">Josef Malrose</a>
-                <span class="status">Manager</span>
-            </section>
-            <section>
-                <button>4</button>
-                <div class="avatar"><span>YG</span></div>
-                <a href="#" class="chat-name">Yauheni Gilly</a>
-                <span class="status">Electrician</span>
-            </section>
-            <section>
-                <button>5</button>
-                <div class="avatar"><span>DR</span></div>
-                <a href="#" class="chat-name">Don Russell</a>
-                <span class="status">Plumbing master</span>
-            </section>
-            <section>
-                <button>6</button>
-                <div class="avatar"><span>JM</span></div>
-                <a href="#" class="chat-name">Josef Malrose</a>
-                <span class="status">Manager</span>
-            </section>
-            <section>
-                <button>7</button>
-                <div class="avatar"><span>RR</span></div>
-                <a href="#" class="chat-name">Rimma Richards</a>
-                <span class="status">Safety engineer</span>
-            </section>
-            <section>
-                <button>8</button>
-                <div class="avatar"><span>RF</span></div>
-                <a href="#" class="chat-name">Roberta Fox</a>
-                <span class="status">Vahter</span>
-            </section>
-            <section>
-                <button>9</button>
-                <div class="avatar"><span>JV</span></div>
-                <a href="#" class="chat-name">Jamie Vendetta</a>
-                <span class="status">Cooker</span>
-            </section>
-            <section>
-                <button>10</button>
-                <div class="avatar"><span>RR</span></div>
-                <a href="#" class="chat-name">Rimma Richards</a>
-                <span class="status">Safety engineer</span>
-            </section>
-            <section>
-                <button>11</button>
-                <div class="avatar"><span>RF</span></div>
-                <a href="#" class="chat-name">Roberta Fox</a>
-                <span class="status">Vahter</span>
-            </section>
-            <section>
-                <button>12</button>
-                <div class="avatar"><span>JV</span></div>
-                <a href="#" class="chat-name">Jamie Vendetta</a>
-                <span class="status">Cooker</span>
+            <section v-for="(user, i) in users">
+                <button>{{i+1}}</button>
+                <span v-if='user.online' class="ready online"></span>
+                <span v-else class="ready offline"></span>
+                <div class="avatar">
+                    <img v-if="user.avatar" :src="user.avatar">
+                    <span v-else>{{makeDoubleLettersAva(user.name)}}</span>
+                </div>
+                <button class="chat-name" onclick="window.location = './chat.html'">{{user.name}}</button>
+                <span class="occupacy">{{user.job}}</span> 
             </section>
         </div>
     </main>
@@ -106,77 +57,16 @@
         <span class="status" style="float: right;">Sort ⇳</span>
         <br><br>
         <div>
-            <section>
-                <button>1</button>
-                <div class="avatar"><span>DR</span></div>
-                <a href="#" class="chat-name">Darlene Robertson</a>
-                <span class="status">Electrician</span>
-            </section>
-            <section>
-                <button>2</button>
-                <div class="avatar"><span>DR</span></div>
-                <a href="#" class="chat-name">Don Russell</a>
-                <span class="status">Plumbing master</span>
-            </section>
-            <section>
-                <button>3</button>
-                <div class="avatar"><span>JM</span></div>
-                <a href="#" class="chat-name">Josef Malrose</a>
-                <span class="status">Manager</span>
-            </section>
-            <section>
-                <button>4</button>
-                <div class="avatar"><span>YG</span></div>
-                <a href="#" class="chat-name">Yauheni Gilly</a>
-                <span class="status">Electrician</span>
-            </section>
-            <section>
-                <button>5</button>
-                <div class="avatar"><span>DR</span></div>
-                <a href="#" class="chat-name">Don Russell</a>
-                <span class="status">Plumbing master</span>
-            </section>
-            <section>
-                <button>6</button>
-                <div class="avatar"><span>JM</span></div>
-                <a href="#" class="chat-name">Josef Malrose</a>
-                <span class="status">Manager</span>
-            </section>
-            <section>
-                <button>7</button>
-                <div class="avatar"><span>RR</span></div>
-                <a href="#" class="chat-name">Rimma Richards</a>
-                <span class="status">Safety engineer</span>
-            </section>
-            <section>
-                <button>8</button>
-                <div class="avatar"><span>RF</span></div>
-                <a href="#" class="chat-name">Roberta Fox</a>
-                <span class="status">Vahter</span>
-            </section>
-            <section>
-                <button>9</button>
-                <div class="avatar"><span>JV</span></div>
-                <a href="#" class="chat-name">Jamie Vendetta</a>
-                <span class="status">Cooker</span>
-            </section>
-            <section>
-                <button>10</button>
-                <div class="avatar"><span>RR</span></div>
-                <a href="#" class="chat-name">Rimma Richards</a>
-                <span class="status">Safety engineer</span>
-            </section>
-            <section>
-                <button>11</button>
-                <div class="avatar"><span>RF</span></div>
-                <a href="#" class="chat-name">Roberta Fox</a>
-                <span class="status">Vahter</span>
-            </section>
-            <section>
-                <button>12</button>
-                <div class="avatar"><span>JV</span></div>
-                <a href="#" class="chat-name">Jamie Vendetta</a>
-                <span class="status">Cooker</span>
+            <section v-for="(user, i) in users">
+                <button>{{i+1}}</button>
+                    <span v-if='user.online' class="ready online"></span>
+                    <span v-else class="ready offline"></span>
+                <div class="avatar">
+                    <img v-if="user.avatar" :src="user.avatar">
+                    <span v-else>{{makeDoubleLettersAva(user.name)}}</span>
+                </div>
+                <button class="chat-name" onclick="window.location = './call.html'">{{user.name}}</button>
+                <span class="occupacy">{{user.job}}</span> 
             </section>
         </div>
     </main>
@@ -194,7 +84,7 @@
             </div>
             <div>
                 <button class="big right">
-                    Logout
+                    Log out
                     <img class="icon" src="./img/exit.png">
                 </button>
             </div>
@@ -203,12 +93,38 @@
             <p>Manifest Connect ver. 1.0 </p>
             <span>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</span>
         </div>
-
     </main>
+
+</div>
 
     <button id="scrollToTop">Scroll To Top</button>
 
-    <script src="js/list.js"></script>
-
+    <script src="./js/list.js"></script>
+    <script src="./js/last.js"></script>
+    <script src="./js/contacts.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/vue@next"></script>
+    <script>
+        const users = contacts;
+        const chats = last;
+        let app = Vue.createApp({
+          data() {
+            return {
+                chats,
+                users
+            }
+          },
+          methods: {
+            makeDoubleLettersAva(name) {
+                let words = name.split(' ')
+                let letters = ``
+                for (const word of words) {
+                    let letter = word.charAt(0).toUpperCase()
+                    letters += letter
+                }
+                return letters
+            }
+          }
+        }).mount('#app');
+    </script>
 </body>
 </html>
