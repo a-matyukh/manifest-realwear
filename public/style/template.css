@@ -1,0 +1,50 @@
+a.asset {
+    text-transform: none;
+    font-weight: normal;
+}
+#template-steps {
+    padding-top: 10px;
+}
+#template-steps li {
+    color: #555555;
+    margin-bottom: 30px;
+}
+#template-steps ol {
+    position: relative;
+    left: -30px;
+    list-style: none;
+    counter-reset: my-awesome-counter;
+}
+#template-steps ol li {
+    counter-increment: my-awesome-counter;
+}
+#template-steps li::before {
+    content: counter(my-awesome-counter) ". ";
+    color: var(--primary);
+    font-weight: bold;
+}
+
+#notesCounter {
+    position: fixed;
+    top: 67px;
+    right: 50px;
+}
+#notesCounter ul {
+    list-style: none !important;
+    text-align: center;
+}
+#notesCounter li::before {
+    content: "";
+    color: var(--primary);
+    font-weight: bold;
+}
+#notesCounter .message {
+    color: hsl(0, 0%, 60%);
+}
+#notesCounter .no {
+    color: hsl(0, 0%, 80%);
+}
+.icon-notes {
+    position: relative;
+    top: 3px;
+}

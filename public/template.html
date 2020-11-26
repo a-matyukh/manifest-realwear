@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/app.css">
+    <title>Manifest Realwear / Template</title>
+</head>
+<body>
+
+    <header id="chatHeader">
+        <a onclick="window.location = './lists.html'">
+            <img src="./img/arrow-left.png" class="icon back">
+            <button class="back">Back</button>
+        </a>
+        <a class="current asset">Boiler EPCO.R-15 Maintenance</a>
+        <button onclick="window.location = './step.html'">Preview</button>
+    </header>
+    
+    <div id="template-steps">
+        <section>
+            <ol>
+                <li>Setting the pressure gauge thresholds</li>
+                <li>Set / check the speed of the pump</li>
+                <li>Thermostat check</li>
+                <li>Vent air from the air valve</li>
+                <li>Check bleeder valve</li>
+            </ol>
+        </section>
+        <section id="notesCounter">
+            <ul>
+                <li class="status message">
+                    <img src="./img/notes.png" class="icon icon-notes">
+                    NOTES
+                </li>
+                <li>1</li>
+                <li class="no">no</li>
+                <li>5</li>
+                <li class="no">no</li>
+                <li>3</li>
+            </ul>
+        </section>
+    </div>
+
+</body>
+</html>
