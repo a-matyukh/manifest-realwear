@@ -6,6 +6,7 @@
 @import './chat.css';
 @import './template.css';
 @import './step.css';
+@import './note.css';
 @import './call.css';
 
 :root {
