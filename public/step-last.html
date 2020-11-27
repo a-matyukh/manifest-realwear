@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/app.css">
-    <title>Manifest Realwear / Step</title>
+    <title>Manifest Realwear / Step Last</title>
 </head>
 <body>
 
@@ -14,32 +14,34 @@
             <button class="back">Back</button>
         </a>
         <a class="current asset">Boiler EPCO.R-15 Maintenance</a>
-        <button onclick="window.location = './step-last.html'">Next <img src="./img/arrow-left-blue.png" class="icon reverse"></button>
+        <button>Next <img src="./img/arrow-left-blue.png" class="icon reverse"></button>
         <button><img src="./img/arrow-left-blue.png" class="icon"> Previous</button>
     </header>
-    
+
     <div class="step">
-        <h3>Step 1. Setting the pressure gauge thresholds</h3>
-        <p><img src="./img/3d-logo.png" class="notification"> Step contains notes available only on 3D Client</p>
+        <h3>Step 5. Check bleeder valve</h3>
         <div>
             <div>
                 <button onclick="window.location = './note.html'">1</button>
-                <img src="./img/notes/photo-note.png" class="note">
-            </div>
-            <div>
-                <button onclick="window.location = './note.html'">2</button>
                 <img src="./img/notes/video-note.png" class="note">
             </div>
             <div>
-                <button onclick="window.location = './note.html'">3</button>
-                <img src="./img/notes/manual-note.png" class="note">
-            </div>
-            <div>
-                <button onclick="window.location = './note.html'">4</button>
-                <img src="./img/notes/audio-note.png" class="note">
+                <button onclick="window.location = './note.html'">2</button>
+                <img src="./img/notes/photo-note.png" class="note">
             </div>
         </div>
     </div>
+
+    <dialog open>
+        <div>
+            <p><strong>You have reached the last step in the template preview.</strong></p>
+            <p>How would you like to proceed?</p>
+            <div>
+                <button class="accent" onclick="window.location = './step.html'">REPLAY</button>
+                <button class="red" onclick="window.location = './lists.html'">CLOSE</button>
+            </div>
+        </div>
+    </dialog>
 
 </body>
 </html>
