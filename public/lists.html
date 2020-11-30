@@ -11,8 +11,8 @@
 <div id="app" v-cloak>
 
     <div id="tabs">
-        <button class="current" id="backAnchor">Last</button>
-        <button id="tabsContacts">Contacts</button>
+        <button class="current">Last</button>
+        <button>Contacts</button>
         <button><a class="button"><span class="icon icon-call"></span> Call</a></button>
         <button>Scan QR</button>
         <button>Menu</button>
@@ -91,7 +91,7 @@
                     <img src="./img/device-thumb.png" alt="">
                 </div>
                 <div>
-                    <button class="bolder share" onclick="clickOnContacts()"><span class="icon icon-share"></span> Share</button>
+                    <button class="bolder share" onclick="app.section = 'contacts'"><span class="icon icon-share"></span> Share</button>
                     <p>Asset Tag: <span>EPCO0001</span></p>
                     <p class="inline marged">Make: <span>Kospel</span></p>
                     <p class="inline">Model: <span>EPCO 1.4</span></p>
@@ -205,22 +205,6 @@ for (const tab of tabs) {
         // }
 
     })
-}
-
-// Click on tabs
-let evt = new MouseEvent("click", {
-    view: window,
-    bubbles: true,
-    cancelable: true,
-    clientX: 220,
-    clientY: 40
-})
-
-function hideModal() {
-    document.getElementById("backAnchor").dispatchEvent(evt)
-}
-function clickOnContacts() {
-    document.getElementById("tabsContacts").dispatchEvent(evt)
 }
 
 // Scroll to top
