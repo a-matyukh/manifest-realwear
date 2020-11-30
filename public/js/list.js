@@ -1,4 +1,4 @@
-//////////////////////////////////////////////// Header
+// Tabs switcher
 const tabs = document.querySelectorAll('#tabs button')
 for (const tab of tabs) {
     tab.addEventListener('click', event => {
@@ -26,7 +26,6 @@ for (const tab of tabs) {
 }
 
 // Scroll to top
-let header = document.getElementsByTagName('header')[0]
 document.addEventListener('scroll' , e => {
     if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
         scrollToTop.classList.add('active')
@@ -36,25 +35,18 @@ document.addEventListener('scroll' , e => {
 })
 scrollToTop.onclick = () => window.scrollTo(0,0)
 
+// Click on tabs
+let evt = new MouseEvent("click", {
+    view: window,
+    bubbles: true,
+    cancelable: true,
+    clientX: 220,
+    clientY: 40
+})
+
 function hideModal() {
-    let evt = new MouseEvent("click", {
-        view: window,
-        bubbles: true,
-        cancelable: true,
-        clientX: 220,
-        clientY: 40
-    })
-    ele = document.getElementById("backAnchor");
-    ele.dispatchEvent(evt);
+    document.getElementById("backAnchor").dispatchEvent(evt)
 }
 function clickOnContacts() {
-    let evt = new MouseEvent("click", {
-        view: window,
-        bubbles: true,
-        cancelable: true,
-        clientX: 220,
-        clientY: 40
-    })
-    ele = document.getElementById("tabsContacts");
-    ele.dispatchEvent(evt);
+    document.getElementById("tabsContacts").dispatchEvent(evt)
 }
