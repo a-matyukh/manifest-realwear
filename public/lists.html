@@ -150,7 +150,7 @@
             watch: {
                 section(current, previous) {
                     let previousNode, currentNode;
-                    tabs.forEach(tab => {
+                    [...tabs.children].forEach(tab => {
                         let textId = tab.innerText.trim().toLowerCase().replace(/\s/g, '');
                         if (previous == textId) previousNode = tab
                         if (current == textId) currentNode = tab
@@ -181,8 +181,6 @@
                 }
             }
         }).mount('#app');
-
-const tabs = document.querySelectorAll('#tabs button')
 
 // Scroll to top
 document.addEventListener('scroll' , () => {
