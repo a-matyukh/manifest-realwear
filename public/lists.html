@@ -8,6 +8,8 @@
 </head>
 <body>
 
+<div id="app" v-cloak>
+
     <div id="tabs">
         <button class="current" id="backAnchor">Last</button>
         <button id="tabsContacts">Contacts</button>
@@ -16,9 +18,7 @@
         <button>Menu</button>
     </div>
 
-<div id="app" v-cloak>
-
-    <main id="last">
+    <main id="last" v-if='section == "last"'>
         <section v-for="(chat, i) in chats">
             <button>{{i+1}}</button>
             <template v-if='chat.single'>
@@ -30,7 +30,7 @@
             <button class="chat-name" onclick="window.location = './chat.html'">{{chat.name}}</button>
         </section>
     </main>
-    <main id="contacts">
+    <main id="contacts" v-else-if='section == "contacts"'>
         <span class="status">Online (19)</span>
         <span class="status" style="float: right;">Sort ⇳</span>
         <br><br>
@@ -48,10 +48,10 @@
             </section>
         </div>
     </main>
-    <main id="call">
+    <main id="call" v-else-if='section == "call"'>
         <h3>
             Say who to call:
-            <button style="float: right; position: relative; top: -20px; left: 30px" onclick="hideModal()">Close</button>
+            <button style="float: right; position: relative; top: -20px; left: 30px" onclick="app.section = 'last'">Close</button>
         </h3>
         <span class="status">Online (18)</span>
         <span class="status" style="float: right;">Sort ⇳</span>
@@ -70,7 +70,7 @@
             </section>
         </div>
     </main>
-    <main id="scanqr">
+    <main id="scanqr" v-else-if='section == "scanqr"'>
         <div v-show="!scanSuccess">
             <img src="./img/target.png">
             <h3>Scan to get asset info</h3>
@@ -105,7 +105,7 @@
             </div>
         </div>
     </main>
-    <main id="menu">
+    <main id="menu" v-else-if='section == "menu"'>
         <div id="userInfo">
             <div>
                 <img class="userAvatar" src="./img/nick.png">
@@ -142,9 +142,14 @@
                 return {
                     chats,
                     users,
-                    scrollTop: document.documentElement.scrollTop,
+                    section: 'last',
                     scanSuccess: false,
                     templateList: true
+                }
+            },
+            watch: {
+                section(id) {
+                    console.log(id)
                 }
             },
             methods: {
@@ -167,29 +172,38 @@
 const tabs = document.querySelectorAll('#tabs button')
 for (const tab of tabs) {
     tab.addEventListener('click', event => {
-        if (event.target.nodeName == "BUTTON") {
-            tabs.forEach(tab => {
-                if (tab.classList.contains('current')) {
     
-                    tab.classList.remove('current')
-                    event.target.classList.add('current')
+        app.section = event.target.innerText.trim().toLowerCase().replace(/\s/g, '')
+
+
+        // if (event.target.nodeName == "BUTTON") {
+        //     tabs.forEach(tab => {
+        //         if (tab.classList.contains('current')) {
     
-                    const main = document.getElementById(`${tab.innerText.trim().toLowerCase().replace(/\s/g, '')}`)
-                    main.style.display = 'none'
+                    
+        //             tab.classList.remove('current')
+        //             event.target.classList.add('current')
     
-                    const newMain = document.getElementById(`${event.target.innerText.trim().toLowerCase().replace(/\s/g, '')}`)
-                    if (newMain.id == 'last') {
-                        newMain.style.display = 'grid'
-                    } else {
-                        newMain.style.display = 'block'
-                    }
-                    if (newMain.id == 'scanqr' && app.scanSuccess) {
-                        app.scanSuccess = false
-                        app.templateList = true
-                    }
-                }
-            })
-        }
+        //             const main = document.getElementById(`${tab.innerText.trim().toLowerCase().replace(/\s/g, '')}`)
+        //             main.style.display = 'none'
+    
+        //             const newMain = document.getElementById(`${event.target.innerText.trim().toLowerCase().replace(/\s/g, '')}`)
+        //             if (newMain.id == 'last') {
+        //                 newMain.style.display = 'grid'
+        //             } else {
+        //                 newMain.style.display = 'block'
+        //             }
+        //             if (newMain.id == 'scanqr' && app.scanSuccess) {
+        //                 app.scanSuccess = false
+        //                 app.templateList = true
+        //             }
+
+                    
+
+        //         }
+        //     })
+        // }
+
     })
 }
 
