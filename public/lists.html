@@ -11,11 +11,11 @@
 <div id="app" v-cloak>
 
     <div id="tabs">
-        <button class="current">Last</button>
-        <button>Contacts</button>
-        <button><a class="button"><span class="icon icon-call"></span> Call</a></button>
-        <button>Scan QR</button>
-        <button>Menu</button>
+        <button class="current" @click="setSection">Last</button>
+        <button @click="setSection">Contacts</button>
+        <button @click="setSection"><a class="button"><span class="icon icon-call"></span> Call</a></button>
+        <button @click="setSection">Scan QR</button>
+        <button @click="setSection">Menu</button>
     </div>
 
     <main id="last" v-if='section == "last"'>
@@ -127,9 +127,9 @@
         </div>
     </main>
 
-</div>
-
     <button id="scrollToTop">Scroll To Top</button>
+    
+</div>
 
     <script src="./db/last.js"></script>
     <script src="./db/contacts.js"></script>
@@ -152,12 +152,8 @@
                     let previousNode, currentNode;
                     tabs.forEach(tab => {
                         let textId = tab.innerText.trim().toLowerCase().replace(/\s/g, '');
-                        if (previous == textId) {
-                            previousNode = tab
-                        } 
-                        if (current == textId) {
-                            currentNode = tab
-                        }
+                        if (previous == textId) previousNode = tab
+                        if (current == textId) currentNode = tab
                     })
                     previousNode.classList.remove('current')
                     currentNode.classList.add('current')
@@ -179,17 +175,14 @@
                 },
                 changeTab() {
                     this.templateList = !this.templateList
+                },
+                setSection(event) {
+                    this.section = event.target.innerText.trim().toLowerCase().replace(/\s/g, '')
                 }
             }
         }).mount('#app');
 
-// Tabs switcher
 const tabs = document.querySelectorAll('#tabs button')
-for (const tab of tabs) {
-    tab.addEventListener('click', event => {
-        app.section = event.target.innerText.trim().toLowerCase().replace(/\s/g, '')
-    })
-}
 
 // Scroll to top
 document.addEventListener('scroll' , () => {
