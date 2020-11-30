@@ -47,3 +47,14 @@ function hideModal() {
     ele = document.getElementById("backAnchor");
     ele.dispatchEvent(evt);
 }
+function clickOnContacts() {
+    let evt = new MouseEvent("click", {
+        view: window,
+        bubbles: true,
+        cancelable: true,
+        clientX: 220,
+        clientY: 40
+    })
+    ele = document.getElementById("tabsContacts");
+    ele.dispatchEvent(evt);
+}
