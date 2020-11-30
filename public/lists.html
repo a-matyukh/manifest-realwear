@@ -148,8 +148,23 @@
                 }
             },
             watch: {
-                section(id) {
-                    console.log(id)
+                section(current, previous) {
+                    let previousNode, currentNode;
+                    tabs.forEach(tab => {
+                        let textId = tab.innerText.trim().toLowerCase().replace(/\s/g, '');
+                        if (previous == textId) {
+                            previousNode = tab
+                        } 
+                        if (current == textId) {
+                            currentNode = tab
+                        }
+                    })
+                    previousNode.classList.remove('current')
+                    currentNode.classList.add('current')
+                    if (current == 'scanqr' && this.scanSuccess) {
+                        this.scanSuccess = false
+                        this.templateList = true
+                    }
                 }
             },
             methods: {
@@ -172,38 +187,7 @@
 const tabs = document.querySelectorAll('#tabs button')
 for (const tab of tabs) {
     tab.addEventListener('click', event => {
-    
         app.section = event.target.innerText.trim().toLowerCase().replace(/\s/g, '')
-
-
-        // if (event.target.nodeName == "BUTTON") {
-        //     tabs.forEach(tab => {
-        //         if (tab.classList.contains('current')) {
-    
-                    
-        //             tab.classList.remove('current')
-        //             event.target.classList.add('current')
-    
-        //             const main = document.getElementById(`${tab.innerText.trim().toLowerCase().replace(/\s/g, '')}`)
-        //             main.style.display = 'none'
-    
-        //             const newMain = document.getElementById(`${event.target.innerText.trim().toLowerCase().replace(/\s/g, '')}`)
-        //             if (newMain.id == 'last') {
-        //                 newMain.style.display = 'grid'
-        //             } else {
-        //                 newMain.style.display = 'block'
-        //             }
-        //             if (newMain.id == 'scanqr' && app.scanSuccess) {
-        //                 app.scanSuccess = false
-        //                 app.templateList = true
-        //             }
-
-                    
-
-        //         }
-        //     })
-        // }
-
     })
 }
 
