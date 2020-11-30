@@ -21,7 +21,6 @@
 /* Main */
 
 main {
-    /* display: none; */
     padding-bottom: 90px;
 }
 
@@ -195,9 +194,6 @@ section > button {
 
 /* scanqr */
 #scanqr {
-
-    /* display: block; */
-
     position: relative;
     top: -32px;
     padding: 0;
