@@ -18,7 +18,10 @@ for (const tab of tabs) {
                     } else {
                         newMain.style.display = 'block'
                     }
-    
+                    if (newMain.id == 'scanqr' && app.scanSuccess) {
+                        app.scanSuccess = false
+                        app.templateList = true
+                    }
                 }
             })
         }
@@ -26,7 +29,7 @@ for (const tab of tabs) {
 }
 
 // Scroll to top
-document.addEventListener('scroll' , e => {
+document.addEventListener('scroll' , () => {
     if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
         scrollToTop.classList.add('active')
     } else {
