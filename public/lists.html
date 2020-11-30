@@ -135,8 +135,8 @@
     <script src="./db/contacts.js"></script>
     <script type="text/javascript" src="https://unpkg.com/vue@next"></script>
     <script>
-        const users = contacts;
-        const chats = last;
+        const users = contacts
+        const chats = last
         let app = Vue.createApp({
             data() {
                 return {
@@ -149,9 +149,9 @@
             },
             watch: {
                 section(current, previous) {
-                    let previousNode, currentNode;
+                    let previousNode, currentNode
                     [...tabs.children].forEach(tab => {
-                        let textId = tab.innerText.trim().toLowerCase().replace(/\s/g, '');
+                        let textId = tab.innerText.trim().toLowerCase().replace(/\s/g, '')
                         if (previous == textId) previousNode = tab
                         if (current == textId) currentNode = tab
                     })
@@ -180,7 +180,7 @@
                     this.section = event.target.innerText.trim().toLowerCase().replace(/\s/g, '')
                 }
             }
-        }).mount('#app');
+        }).mount('#app')
 
 // Scroll to top
 document.addEventListener('scroll' , () => {
