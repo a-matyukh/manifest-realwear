@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style/app.css">
-    <script type="text/javascript" src="./js/wearml_engine-min.js"></script> 
+    <script type="text/javascript" src="./js/wearml_engine-min.js"></script>
+    <script type="text/javascript" src="./js/jsQR.js"></script>
     <title>Manifest Realwear / List</title>
 </head>
 <body>
@@ -68,9 +69,15 @@
     </main>
     <main id="scanqr" v-else-if='section == "scanqr"'>
         <div v-show="!scanSuccess">
-            <img src="./img/target.png">
-            <h3>Scan to get asset info</h3>
-            <button @click="scanSuccess = true">Success</button>
+            <div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
+            <canvas id="canvas" hidden></canvas>
+            <div id="output" hidden>
+              <div id="outputMessage">No QR code detected.</div>
+              <div hidden><b>Data:</b> <span id="outputData"></span></div>
+            </div>
+            <!-- <img src="./img/target.png"> -->
+            <!-- <h3>Scan to get asset info</h3> -->
+            <!-- <button @click="scanSuccess = true">Success</button> -->
         </div>
         <div v-show='scanSuccess'>
             <nav>
@@ -88,6 +95,7 @@
                 </div>
                 <div>
                     <button class="bolder share" onclick="app.section = 'contacts'"><span class="icon icon-share"></span> Share</button>
+                    <p>URL: <span>{{codeData}}</span></p>
                     <p>Asset Tag: <span>EPCO0001</span></p>
                     <p class="inline marged">Make: <span>Kospel</span></p>
                     <p class="inline">Model: <span>EPCO 1.4</span></p>
@@ -139,7 +147,8 @@
                     users: contacts,
                     section: 'last',
                     scanSuccess: false,
-                    templateList: true
+                    templateList: true,
+                    codeData: 'значение'
                 }
             },
             created () {
@@ -163,6 +172,11 @@
                     })
                     previousNode.classList.remove('current')
                     currentNode.classList.add('current')
+                    if (current == 'scanqr') {
+                        setTimeout(() => {
+                            this.enableScan()
+                        }, 100);
+                    }
                     if (current == 'scanqr' && this.scanSuccess) {
                         this.scanSuccess = false
                         this.templateList = true
@@ -194,10 +208,78 @@
                 },
                 toTop() {
                     window.scrollTo(0,0)
+                },
+                enableScan() {
+
+                    let video = document.createElement("video");
+                    let canvasElement = document.getElementById("canvas");
+                    let canvas = canvasElement.getContext("2d");
+                    let loadingMessage = document.getElementById("loadingMessage");
+                    let outputContainer = document.getElementById("output");
+                    let outputMessage = document.getElementById("outputMessage");
+                    let outputData = document.getElementById("outputData");
+                
+                    function drawLine(begin, end, color) {
+                    canvas.beginPath();
+                    canvas.moveTo(begin.x, begin.y);
+                    canvas.lineTo(end.x, end.y);
+                    canvas.lineWidth = 4;
+                    canvas.strokeStyle = color;
+                    canvas.stroke();
+                    }
+                
+                    let reqId;
+
+                    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function(stream) {
+                    video.srcObject = stream;
+                    video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
+                    video.play();
+                    requestAnimationFrame(tick);
+                    });
+
+                    function tick() {
+                    loadingMessage.innerText = "⌛ Loading video..."
+                    if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                        loadingMessage.hidden = true;
+                        canvasElement.hidden = false;
+                        outputContainer.hidden = false;
+                
+                        canvasElement.height = video.videoHeight;
+                        canvasElement.width = video.videoWidth;
+                        canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+                        let imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
+                        let code = jsQR(imageData.data, imageData.width, imageData.height, {
+                        inversionAttempts: "dontInvert",
+                        });
+                        if (code) {
+                        drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
+                        drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
+                        drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
+                        drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
+                        outputMessage.hidden = true;
+                        outputData.parentElement.hidden = false;
+                        outputData.innerText = code.data;
+                        app.codeData = code.data;
+                        setTimeout(() => {
+                                video.srcObject.getTracks().forEach(function(track) {
+                                    track.stop();
+                                });
+                            app.scanSuccess = true
+                            cancelAnimationFrame(reqId)
+                        }, 1000);
+                        } else {
+                        outputMessage.hidden = false;
+                        outputData.parentElement.hidden = true;
+                        }
+                    }
+                    reqId = requestAnimationFrame(tick);
+                    }
+
                 }
             }
         }).mount('#app')
 
-    </script>
+
+      </script>
 </body>
 </html>

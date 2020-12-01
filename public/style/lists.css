@@ -201,7 +201,8 @@ section > button {
 }
 #scanqr > div:first-child {
     height: 90vh;
-    background-image: url(../img/device.png);
+    /* background-color: var(--primary-dark); */
+    /* background-image: url(../img/device.png); */
     text-align: center;
 }
 #scanqr img {
@@ -212,6 +213,16 @@ section > button {
     color: white;
     text-transform: uppercase;
 }
+
+#output {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #eae9e5;
+    padding: 10px;
+}
+
+
 button.link {
     background: none;
     box-shadow: none;
