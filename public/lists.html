@@ -135,13 +135,12 @@
     <script src="./db/contacts.js"></script>
     <script type="text/javascript" src="https://unpkg.com/vue@next"></script>
     <script>
-        const users = contacts
-        const chats = last
+        
         let app = Vue.createApp({
             data() {
                 return {
-                    chats,
-                    users,
+                    chats: last,
+                    users: contacts,
                     section: 'last',
                     scanSuccess: false,
                     templateList: true
