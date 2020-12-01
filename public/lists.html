@@ -127,7 +127,7 @@
         </div>
     </main>
 
-    <button id="scrollToTop">Scroll To Top</button>
+    <button id="scrollToTop" @click="toTop">Scroll To Top</button>
     
 </div>
 
@@ -145,6 +145,12 @@
                     scanSuccess: false,
                     templateList: true
                 }
+            },
+            created () {
+                document.addEventListener('scroll', this.onScroll);
+            },
+            unmounted () {
+                document.removeEventListener('scroll', this.onScroll);
             },
             watch: {
                 section(current, previous) {
@@ -177,19 +183,20 @@
                 },
                 setSection(event) {
                     this.section = event.target.innerText.trim().toLowerCase().replace(/\s/g, '')
+                },
+                onScroll() {
+                    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                        scrollToTop.classList.add('active')
+                    } else {
+                        scrollToTop.classList.remove('active')
+                    }
+                },
+                toTop() {
+                    window.scrollTo(0,0)
                 }
             }
         }).mount('#app')
 
-// Scroll to top
-document.addEventListener('scroll' , () => {
-    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        scrollToTop.classList.add('active')
-    } else {
-        scrollToTop.classList.remove('active')
-    }
-})
-scrollToTop.onclick = () => window.scrollTo(0,0)
     </script>
 </body>
 </html>
