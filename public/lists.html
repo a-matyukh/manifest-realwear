@@ -11,11 +11,11 @@
 <div id="app" v-cloak>
 
     <div id="tabs">
-        <button class="current" @click="setSection">Last</button>
-        <button @click="setSection">Contacts</button>
-        <button @click="setSection"><a class="button"><span class="icon icon-call"></span> Call</a></button>
-        <button @click="setSection">Scan QR</button>
-        <button @click="setSection">Menu</button>
+        <button class="current">Last</button>
+        <button>Contacts</button>
+        <button><a class="button"><span class="icon icon-call"></span> Call</a></button>
+        <button>Scan QR</button>
+        <button>Menu</button>
     </div>
 
     <main id="last" v-if='section == "last"'>
@@ -147,10 +147,15 @@
                 }
             },
             created () {
-                document.addEventListener('scroll', this.onScroll);
+                document.addEventListener('scroll', this.onScroll)
+            },
+            mounted () {
+                [...tabs.children].forEach(tab => {
+                    tab.addEventListener('click', this.setSection)
+                })
             },
             unmounted () {
-                document.removeEventListener('scroll', this.onScroll);
+                document.removeEventListener('scroll', this.onScroll)
             },
             watch: {
                 section(current, previous) {
