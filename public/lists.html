@@ -21,12 +21,8 @@
     <main id="last" v-if='section == "last"'>
         <section v-for="(chat, i) in chats">
             <button>{{i+1}}</button>
-            <template v-if='chat.single'>
-                <div class="avatar"><span>{{makeDoubleLettersAva(chat.name)}}</span></div>
-            </template>
-            <template v-else>
-                <img src="./img/group-chat.png" class="avatar"></img>
-            </template>
+            <div class="avatar" v-if='chat.single'><span>{{makeDoubleLettersAva(chat.name)}}</span></div>
+            <img v-else src="./img/group-chat.png" class="avatar"></img>
             <button class="chat-name" onclick="window.location = './chat.html'">{{chat.name}}</button>
         </section>
     </main>
