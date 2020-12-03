@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/app.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script type="text/javascript" src="./js/wearml_engine-min.js"></script>
     <title>Manifest Realwear / Call</title>
 </head>
 <body style="background-image: url(./img/videostream.png); background-size: cover;">
@@ -37,6 +38,12 @@
         </button>
     </div>
     <script>
+
+        wearML.addCallbackCommand("Less", null, function(){ 
+            //Refresh the UI... 
+            alert('Yeah!')
+        });
+
         let app = new Vue({
         el: '#app',
         data: {

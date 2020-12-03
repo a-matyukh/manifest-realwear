@@ -21,7 +21,6 @@
 
     <main id="last" v-if='section == "last"'>
         <!-- <input type="file" accept="image/*" capture="camera" /> -->
-
         <section v-for="(chat, i) in chats">
             <button>{{i+1}}</button>
             <div class="avatar" v-if='chat.single'><span>{{makeDoubleLettersAva(chat.name)}}</span></div>
@@ -71,15 +70,17 @@
     </main>
     <main id="scanqr" v-else-if='section == "scanqr"'>
         <div v-show="!scanSuccess">
-            <div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
+            <div id="loadingMessage">
+                    <img src="./img/target.png">
+                    <h3>Scan to get asset info</h3>
+                    <button @click="scanSuccess = true">Success</button>
+            </div>
             <canvas id="canvas" hidden></canvas>
             <div id="output" hidden>
               <div id="outputMessage">No QR code detected.</div>
               <div hidden><b>Data:</b> <span id="outputData"></span></div>
             </div>
-            <!-- <img src="./img/target.png"> -->
-            <!-- <h3>Scan to get asset info</h3> -->
-            <!-- <button @click="scanSuccess = true">Success</button> -->
+
         </div>
         <div v-show='scanSuccess'>
             <nav>
@@ -141,8 +142,6 @@
     <script src="./db/contacts.js"></script>
     <script type="text/javascript" src="https://unpkg.com/vue@next"></script>
     <script>
-
-        
 
         let app = Vue.createApp({
             data() {
