@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/app.css">
+    <title>Manifest Realwear / Models</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+    <style>
+        model-viewer {
+            position: relative;
+            top: -30px;
+            width: 100vw !important;
+            height: 80vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+
+    <header id="chatHeader">
+        <a onclick="window.location = './lists.html'">
+            <img src="./img/arrow-left.png" class="icon back">
+            <button class="back">Back</button>
+        </a>
+        <a class="current asset">Models</a>
+        <button>astronaut</button>
+        <button>train</button>
+        <button>mixer</button>
+        <button>chair</button>
+    </header>
+        <model-viewer v-if="model == 'chair'" src="./img/Chair.glb" auto-rotate camera-controls></model-viewer>
+        <model-viewer v-if="model == 'mixer'" src="./img/Mixer.glb" auto-rotate camera-controls></model-viewer>
+        <model-viewer v-if="model == 'train'" src="./img/ToyTrain.glb" auto-rotate camera-controls></model-viewer>
+        <model-viewer v-if="model == 'astronaut'" src="./img/Astronaut.glb" auto-rotate camera-controls></model-viewer>
+    </div>
+
+    <script type="text/javascript" src="https://unpkg.com/vue@next"></script>
+    <script>
+
+            let app = Vue.createApp({
+            data() {
+                return {
+                    model: 'chair'
+                }
+            }
+            }).mount('#app');
+
+            [...document.getElementsByTagName('button')].forEach(button => {
+                if (!button.classList.contains('back')) {
+                    button.onclick = () => {
+                        app.model = button.innerText.toLocaleLowerCase()
+                    }
+                }
+            })
+
+    </script>
+</body>
+</html>
