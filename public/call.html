@@ -19,6 +19,11 @@
         #rwView {
             width: 100%;
         }
+        #videoSwitcher {
+            position: fixed;
+            bottom: 230px;
+            right: 80px;
+        }
     </style>
 </head>
 <body style="background-image: url(./img/videostream.png); background-size: cover;">
@@ -51,9 +56,12 @@
                 <span class="icon icon-arrows reverse"></span> Less
             </span>
         </button>
+        <button id="videoSwitcher">videoSwitcher</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/peerjs@1.2.0/dist/peerjs.min.js"></script>
     <script>
+
+        let conn
 
         wearML.addCallbackCommand("Less", null, function(){ 
             //Refresh the UI... 
@@ -95,6 +103,19 @@
             },
             err => console.log("Failed to get local stream", err)
 		);
+        setTimeout(() => {
+            conn = peer.connect("awgdasadas", {
+                reliable: true
+            });
+        }, 1000);
+
+        videoSwitcher.addEventListener('click', event => {
+            conn.send({
+                showDestop: true
+            });
+        })
+
+
     </script>
 </body>
 </html>
