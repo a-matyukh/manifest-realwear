@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style/app.css">
+    <script type="text/javascript" src="./js/wearml_engine-min.js"></script>
+    <script type="text/javascript" src="./js/jsQR.js"></script>
+    <title>Manifest Realwear / List</title>
+</head>
+<body>
+
+<div id="app">
+
+    <div id="tabs">
+        <button class="current"><router-link to="/last">Last</router-link></button>
+        <button><router-link to="/contacts">Contacts</router-link></button>
+        <button><router-link to="/call"><a class="button"><span class="icon icon-call"></span> Call</a></router-link></button>
+        <button><router-link to="/scan">Scan QR</router-link></button>
+        <button><router-link to="/menu">Menu</router-link></button>
+    </div>
+
+    <router-view></router-view>
+    
+</div>
+
+    <script type="text/javascript" src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/vue-router@next"></script>
+    <script>
+// компоненты, которые обрабатывают пути
+const Last = { template: '<button>Last Page</button>' }
+const Contacts = { template: '<button>Contacts Page</button>' }
+const Call = { template: '<button>Call Page</button>' }
+const Scan = { template: '<button>Scan Page</button>' }
+const Menu = { template: '<button>Menu Page</button>' }
+// маршруты, сопоставленные с компонентами
+const routes = [
+  { path: '/last', component: Last },
+  { path: '/contacts', component: Contacts },
+  { path: '/call', component: Call },
+  { path: '/scan', component: Scan },
+  { path: '/menu', component: Menu }
+];
+// создаем объект маршрутизатора
+const router = VueRouter.createRouter({
+  // предоставляем реализацию истории посещений
+  history: VueRouter.createWebHistory(),
+  routes,
+});
+
+const app = Vue.createApp({});
+// указываем объекту приложения использовать объект маршрутизатора
+app.use(router);    
+app.mount('#app');
+
+      </script>
+</body>
+</html>
