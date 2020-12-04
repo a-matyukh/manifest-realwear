@@ -40,32 +40,30 @@ function showMessageBoard() {
     messageBoard.classList.toggle('active')
 }
 
-async function startCapture() {
-    let captureStream = null;
-    const gdmOptions = {
-        video: true,
-        // audio: true
-    }
-    try {
-        captureStream = await navigator.mediaDevices.getDisplayMedia(gdmOptions);
-    } catch(err) {
-        console.error("Error: " + err);
-    }
-    return captureStream;
+function replaceStream(peerConnection, mediaStream) {
+        for(sender of peerConnection.getSenders()){
+            if(sender.track.kind == "audio") {
+                if(mediaStream.getAudioTracks().length > 0){
+                    sender.replaceTrack(mediaStream.getAudioTracks()[0]);
+                }
+            }
+            if(sender.track.kind == "video") {
+                if(mediaStream.getVideoTracks().length > 0){
+                    sender.replaceTrack(mediaStream.getVideoTracks()[0]);
+                }
+            }
+        }
 }
 
 let peer = new Peer("awgdasadas", {debug: 2});
-let getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 peer.on("call", call => {
     
-    getUserMedia({
+    navigator.getUserMedia({
         video: true
         // audio: true
     },
     stream => {
-        // call.answer(stream);
-        let desktopStream = startCapture()
-        call.answer(desktopStream);
+        call.answer(stream);
         call.on("stream", remoteStream => {
             document.querySelector("video").srcObject = remoteStream;
         });
@@ -73,10 +71,17 @@ peer.on("call", call => {
     err => console.log("Failed to get local stream", err)
 );
 });
+
 peer.on("connection", c => {
-    
+
     c.on('data', data => {
         console.dir(data);
+        let desktopStream = await navigator.mediaDevices.getDisplayMedia({
+                video: true,
+                // audio: true
+        });
+            // console.log(desktopStream)
+        replaceStream(call.peerConnection, desktopStream)
     });
 
 });
