@@ -14,6 +14,7 @@
         <p>Calling 0:11</p>
     </div>
     <div id="app">
+        <video autoplay width="100%"></video>
         <div id="mainOptions" :class="mainStyle">
             <button onclick="window.location = './chat.html'">
                 <img class="icon icon-back" src="./img/arrow-left-blue.png">
@@ -37,6 +38,7 @@
             </span>
         </button>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/peerjs@1.2.0/dist/peerjs.min.js"></script>
     <script>
 
         wearML.addCallbackCommand("Less", null, function(){ 
@@ -64,6 +66,20 @@
             }
         }
         })
+
+        let peer = new Peer(null, {debug: 2});
+		navigator.getUserMedia({
+                video: {facingMode: "environment"},
+                // audio: true
+            },
+            stream => {
+                let call = peer.call("awgdasadas", stream);
+                call.on("stream", remoteStream => {
+                    document.querySelector("video").srcObject = remoteStream;
+                });
+            },
+            err => console.log("Failed to get local stream", err)
+		);
     </script>
 </body>
 </html>

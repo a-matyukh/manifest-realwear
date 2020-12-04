@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/app.css">
+    <title>Manifest Realwear / Web</title>
+</head>
+<body>
+
+    <header id="chatHeader">
+        <a onclick="window.location = './lists.html'">
+            <img src="./img/arrow-left.png" class="icon back">
+            <button class="back">Back</button>
+        </a>
+        <a class="current chat">
+            <div class="avatar small"><span>RR</span></div>
+            Rimma Robertson</a>
+        <button onclick="showMessageBoard()">Message</button>
+        <button class="accent" onclick="window.location = './call.html'"><img src="./img/phone.png" class="icon"> Call</button>
+    </header>
+    
+    <div>
+        <video autoplay width="100%" style="position: relative; top: -30px;"></video>
+        <section>
+            <p class="chat-message">Simple message</p>
+            <span class="status message">11:57 PM</span>
+        </section>
+        <section>
+            <p class="chat-message">Simple message</p>
+            <span class="status message">11:57 PM</span>
+        </section>
+        <section>
+            <p class="chat-message">Simple message</p>
+            <span class="status message">11:57 PM</span>
+        </section>
+    </div>
+    <div id="messageBoard">
+        <div>
+            <button>Voice</button>
+            <button>Attach</button>
+            <button class="accent blue" onclick="showMessageBoard()">Send</button>
+            <button onclick="showMessageBoard()">Cancel</button>
+        </div>
+        <span>Enter text</span>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/peerjs@1.2.0/dist/peerjs.min.js"></script>
+    <script>
+
+        let peer = new Peer("awgdasadas", {debug: 2});
+        let getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+        peer.on("call", call => {
+            getUserMedia({
+                video: true
+                // audio: true
+            },
+            stream => {
+                call.answer(stream);
+                call.on("stream", remoteStream => {
+                    document.querySelector("video").srcObject = remoteStream;
+                });
+            },
+            err => console.log("Failed to get local stream", err)
+        );
+        });
+
+    </script>
+</body>
+</html>
