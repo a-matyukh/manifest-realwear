@@ -72,18 +72,19 @@ peer.on("call", call => {
 );
 });
 
-peer.on("connection", c => {
-
-    c.on('data', async data => {
-        console.dir(data);
-        let desktopStream = await navigator.mediaDevices.getDisplayMedia({
-                video: true,
-                // audio: true
-        });
-            // console.log(desktopStream)
-        replaceStream(conn.peerConnection, desktopStream)
+peer.on("connection", async c => {
+    c.on('data', async (data) => {
+        console.log(data.showDestop)
+        if (data.showDestop) {
+            let desktopStream = await navigator.mediaDevices.getDisplayMedia({video: true});
+            console.log(desktopStream)
+            replaceStream(conn.peerConnection, desktopStream)
+        } else {
+            let faceStream = await navigator.getDisplayMedia({video: true});
+            replaceStream(conn.peerConnection, faceStream)
+            console.log(faceStream)
+        }
     });
-
 });
 
 

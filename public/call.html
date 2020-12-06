@@ -63,12 +63,13 @@
                 <span class="icon icon-arrows reverse"></span> Less
             </span>
         </button>
-        <button id="videoSwitcher">videoSwitcher</button>
+        <button id="videoSwitcher">switch video</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/peerjs@1.2.0/dist/peerjs.min.js"></script>
     <script>
 
         let conn
+        let stateShowDestop = true
 
         wearML.addCallbackCommand("Less", null, function(){ 
             //Refresh the UI... 
@@ -119,8 +120,9 @@
         videoSwitcher.addEventListener('click', event => {
             adminFace.classList.toggle('extended')
             conn.send({
-                showDestop: true
+                showDestop: stateShowDestop
             });
+            stateShowDestop = !stateShowDestop
         })
 
 
