@@ -13,10 +13,10 @@
             <button class="back">Manifest Web</button>
         </a>
         <a class="current chat">
-            <div class="avatar small"><span>B</span></div>
+            <!-- <div class="avatar small"><span>B</span></div> -->
             <!-- Rimma Robertson -->
         </a>
-        <button onclick="showMessageBoard()">Message</button>
+        <!-- <button onclick="showMessageBoard()">Message</button> -->
         <!-- <button class="accent" onclick="window.location = './call.html'"><img src="./img/phone.png" class="icon"> Call</button> -->
     </header>
     
@@ -54,10 +54,10 @@ function replaceStream(peerConnection, mediaStream) {
             }
         }
 }
-let connection;
+let conn;
 let peer = new Peer("awgdasadas", {debug: 2});
 peer.on("call", call => {
-    connection = call
+    conn = call
     navigator.getUserMedia({
         video: true
         // audio: true
@@ -81,7 +81,7 @@ peer.on("connection", c => {
                 // audio: true
         });
             // console.log(desktopStream)
-        replaceStream(connection.peerConnection, desktopStream)
+        replaceStream(conn.peerConnection, desktopStream)
     });
 
 });
