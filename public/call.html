@@ -12,15 +12,17 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            border: 2px solid white;
             border-radius: 10px;
             width: 300px;
+            box-shadow: 0px 2px 40px rgba(0, 0, 0, 0.4);
+            /* border: 2px solid white; */
+            /* background-color: var(--primary-dark); */
+            transition: .3s;
         }
         #adminFace.extended {
             z-index: 100;
-            width: 96%;
-            height: 92%;
-            background-color: var(--primary-dark);
+            width: 60%;
+            height: 91%;
         }
         #rwView {
             width: 100%;
@@ -71,11 +73,6 @@
         let conn
         let stateShowDestop = true
 
-        wearML.addCallbackCommand("Less", null, function(){ 
-            //Refresh the UI... 
-            alert('Yeah!')
-        });
-
         let app = new Vue({
         el: '#app',
         data: {
@@ -94,34 +91,21 @@
                     this.moreStyle = 'visible'
                 }
             }
-        }
-        })
+        }})
 
         let peer = new Peer(null, {debug: 2});
-		navigator.getUserMedia({
-                video: {facingMode: "environment"},
-                // audio: true
-            },
-            stream => {
-                let call = peer.call("awgdasadas", stream);
-                rwView.srcObject = stream;
-                call.on("stream", remoteStream => {
-                    adminFace.srcObject = remoteStream;
-                });
-            },
-            err => console.log("Failed to get local stream", err)
-		);
-        setTimeout(() => {
-            conn = peer.connect("awgdasadas", {
-                reliable: true
-            });
-        }, 1000);
 
+        navigator.mediaDevices.getUserMedia({'video': {'facingMode': 'environment'}})
+        .then(mediaStream => {
+            let call = peer.call("awgdasadas", mediaStream);
+            rwView.srcObject = mediaStream;
+            call.on("stream", remoteStream => adminFace.srcObject = remoteStream);
+        });
+
+        setTimeout(() => {conn = peer.connect("awgdasadas", {reliable: true})}, 1000);
         videoSwitcher.addEventListener('click', event => {
             adminFace.classList.toggle('extended')
-            conn.send({
-                showDestop: stateShowDestop
-            });
+            conn.send({showDestop: stateShowDestop})
             stateShowDestop = !stateShowDestop
         })
 
