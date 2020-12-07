@@ -31,6 +31,10 @@
             bottom: 10px;
             right: 10px;
         }
+        button.active {
+            color: white;
+            background-color: red;
+        }
     </style>
 </head>
 <body style="background-image: url(./img/videostream.png); background-size: cover;">
@@ -53,7 +57,7 @@
         <div id="moreOptions" :class="moreStyle">
             <button>Record Call</button>
             <button>Mic off</button>
-            <button>Share asset info</button>
+            <button @click="toggleScan">Share asset info</button>
         </div>
         <button id="changer" onclick="app.changeView()">
             <span v-if="mainView">
@@ -76,7 +80,8 @@
         data: {
             mainView: true,
             mainStyle: 'visible',
-            moreStyle: 'unvisible'
+            moreStyle: 'unvisible',
+            scanEnabled: false
         },
         methods: {
             changeView() {
@@ -88,6 +93,10 @@
                     this.mainStyle = 'unvisible'
                     this.moreStyle = 'visible'
                 }
+            },
+            toggleScan(e) {
+                e.target.classList.toggle('active')
+                this.scanEnabled = !this.scanEnabled
             }
         }})
 
