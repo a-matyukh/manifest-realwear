@@ -35,6 +35,24 @@
             color: white;
             background-color: var(--red);
         }
+        #scanner {
+            position: fixed;
+            z-index: 113;
+            top: 10px;
+            left: 10px;
+            box-shadow: 0px 2px 40px rgba(0, 0, 0, 0.4);
+        }
+        #outputMessage {
+            color: white;
+            padding: 15px;
+            background-color: var(--primary-dark);
+        }
+        #outputMessage > button {
+            position: relative;
+            top: -9px;
+            margin: 0;
+            float: right;
+        }
     </style>
 </head>
 <body style="background-image: url(./img/videostream.png); background-size: cover;">
@@ -45,6 +63,14 @@
     <div id="app">
         <video id="rwView" autoplay></video>
         <video id="adminFace" autoplay></video>
+        <div id="scanner" v-if='scanEnabled'>
+            <div id="loadingMessage"></div>
+            <div id="outputMessage">
+                Scan QR-code
+                <button class="active" @click="toggleScan">Close scanner</button>
+            </div>
+            <canvas id="canvas" hidden></canvas>
+        </div>
         <div id="mainOptions" :class="mainStyle">
             <button onclick="window.location = './chat.html'">
                 <img class="icon icon-back" src="./img/arrow-left-blue.png">
@@ -57,7 +83,7 @@
         <div id="moreOptions" :class="moreStyle">
             <button>Record Call</button>
             <button>Mic off</button>
-            <button @click="toggleScan">Share asset info</button>
+            <button id="scanSwitcher" @click="toggleScan">Share asset info</button>
         </div>
         <button id="changer" onclick="app.changeView()">
             <span v-if="mainView">
@@ -70,6 +96,7 @@
         <button id="videoSwitcher">switch video</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/peerjs@1.2.0/dist/peerjs.min.js"></script>
+    <script type="text/javascript" src="./js/jsQR.js"></script>
     <script>
 
         let conn
@@ -81,7 +108,8 @@
             mainView: true,
             mainStyle: 'visible',
             moreStyle: 'unvisible',
-            scanEnabled: false
+            scanEnabled: false,
+            codeData: ''
         },
         methods: {
             changeView() {
@@ -94,15 +122,77 @@
                     this.moreStyle = 'visible'
                 }
             },
-            toggleScan(e) {
-                e.target.classList.toggle('active')
+            toggleScan() {
+                scanSwitcher.classList.toggle('active')
                 this.scanEnabled = !this.scanEnabled
+                if (this.scanEnabled) {
+                    setTimeout(() => {
+                        this.enableScan()
+                    }, 100);
+                }
+            },
+            enableScan() {
+
+                let video = document.createElement("video");
+                let canvasElement = document.getElementById("canvas");
+                let canvas = canvasElement.getContext("2d");
+                let loadingMessage = document.getElementById("loadingMessage");
+
+                function drawLine(begin, end, color) {
+                    canvas.beginPath();
+                    canvas.moveTo(begin.x, begin.y);
+                    canvas.lineTo(end.x, end.y);
+                    canvas.lineWidth = 4;
+                    canvas.strokeStyle = color;
+                    canvas.stroke();
+                }
+
+                let reqId;
+
+                navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function(stream) {
+                    video.srcObject = stream;
+                    video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
+                    video.play();
+                    requestAnimationFrame(tick);
+                });
+
+                function tick() {
+                    loadingMessage.innerText = "⌛ Loading video..."
+                    if (video.readyState === video.HAVE_ENOUGH_DATA) {
+                        loadingMessage.hidden = true;
+                        canvasElement.hidden = false;
+
+                        canvasElement.height = video.videoHeight;
+                        canvasElement.width = video.videoWidth;
+                        canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+                        let imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
+                        let code = jsQR(imageData.data, imageData.width, imageData.height, {
+                        inversionAttempts: "dontInvert",
+                        });
+                        if (code) {
+                            drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
+                            drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
+                            drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
+                            drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
+
+                            app.codeData = code.data
+                            video.srcObject.getTracks().forEach(track => track.stop())
+                            cancelAnimationFrame(reqId)
+                            app.toggleScan()
+                            conn.send({codeData: app.codeData})
+                        }
+                    }
+                    reqId = requestAnimationFrame(tick);
+                }
+
             }
         }})
 
         let peer = new Peer(null, {debug: 2});
 
-        navigator.mediaDevices.getUserMedia({'video': {'facingMode': 'environment'}, 'audio': 'true'})
+        navigator.mediaDevices.getUserMedia({'video': {'facingMode': 'environment'}
+        // , 'audio': 'true'
+        })
         .then(mediaStream => {
             let call = peer.call("awgdasadas", mediaStream);
             rwView.srcObject = mediaStream;

@@ -22,6 +22,7 @@
             font-size: 12px;
         }
         input {
+            width: 40px;
             margin: 7px;
         }
         #marker {
@@ -40,18 +41,19 @@
     
     <header>
         <button class="back">Manifest Web</button>
-        <label>Диаметр курсора: </label>
+        <label>Cursor radius: </label>
         <input type="number" value="1" min="0" step="0.5" max="3" onchange="marker.setRadius(event)" />
     </header>
     <div><video autoplay width="100%"></video></div>
     <div id="marker"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/peerjs@1.2.0/dist/peerjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
 
 let callOption = {
     video: true,
-    audio: true
+    // audio: true
 }
 function replaceStream(peerConnection, mediaStream) {
     for(sender of peerConnection.getSenders()){
@@ -84,6 +86,20 @@ peer.on("call", call => {
 
 peer.on("connection", async c => {
     c.on('data', async (data) => {
+        if (data.codeData) {
+            Swal.fire({
+                title: 'Asset info from operator',
+                html: `
+                    <b>URL</b>: ${data.codeData}<br>
+                    <b>Asset Tag</b>: EPCO0001<br>
+                    <b>Make</b>: Kospel<br>
+                    <b>Model</b>: EPCO 1.4<br>
+                    <b>Last Job</b>: Job Name 2 Nov 2020
+                `,
+                icon: 'success',
+                confirmButtonText: 'OK'
+            })
+        }
         if (data.showDestop) {
             let desktopStream = await navigator.mediaDevices.getDisplayMedia(callOption);
             replaceStream(conn.peerConnection, desktopStream)
