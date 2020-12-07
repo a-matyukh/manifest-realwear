@@ -6,11 +6,23 @@
     <link rel="stylesheet" href="style/app.css">
     <title>Manifest Realwear / Web</title>
     <style>
-        .back {
+        header {
             position: fixed;
-            top: 20px;
-            left: 20px;
+            z-index: 10;
+            top: 0;
+            left: 0;
+            height: 40px;
             background-color: var(--primary-dark) !important;
+            color: white;
+        }
+        .back {
+            font-size: 15px !important;
+        }
+        label {
+            font-size: 12px;
+        }
+        input {
+            margin: 7px;
         }
         #marker {
             width: 50px;
@@ -20,42 +32,40 @@
             left: 20px;
             background-color: rgba(255, 255, 0, .7);
             border-radius: 100px;
-            /* transform: scale(2); */
         }
     </style>
 </head>
 <body>
 
-    <button class="back">Manifest Web</button>
+    
+    <header>
+        <button class="back">Manifest Web</button>
+        <label>Диаметр курсора: </label>
+        <input type="number" value="1" min="0" step="0.5" max="3" onchange="marker.setRadius(event)" />
+    </header>
     <div><video autoplay width="100%"></video></div>
     <div id="marker"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/peerjs@1.2.0/dist/peerjs.min.js"></script>
     <script>
 
-
-
-function showMessageBoard() {
-    messageBoard.classList.toggle('active')
-}
-
 let callOption = {
     video: true,
     audio: true
 }
 function replaceStream(peerConnection, mediaStream) {
-        for(sender of peerConnection.getSenders()){
-            if(sender.track.kind == "audio") {
-                if(mediaStream.getAudioTracks().length > 0){
-                    sender.replaceTrack(mediaStream.getAudioTracks()[0]);
-                }
-            }
-            if(sender.track.kind == "video") {
-                if(mediaStream.getVideoTracks().length > 0){
-                    sender.replaceTrack(mediaStream.getVideoTracks()[0]);
-                }
+    for(sender of peerConnection.getSenders()){
+        if(sender.track.kind == "audio") {
+            if(mediaStream.getAudioTracks().length > 0){
+                sender.replaceTrack(mediaStream.getAudioTracks()[0]);
             }
         }
+        if(sender.track.kind == "video") {
+            if(mediaStream.getVideoTracks().length > 0){
+                sender.replaceTrack(mediaStream.getVideoTracks()[0]);
+            }
+        }
+    }
 }
 let conn;
 let peer = new Peer("awgdasadas", {debug: 2});
@@ -99,6 +109,9 @@ marker.addEventListener('mousedown', e => {
 marker.addEventListener('mouseup', e => {
     marker.style.backgroundColor = 'rgba(255, 255, 0, .7)'
 })
+marker.setRadius = (e) => {
+    marker.style.transform = `scale(${+e.target.value})`
+}
 
 
     </script>
