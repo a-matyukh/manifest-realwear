@@ -5,36 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/app.css">
     <title>Manifest Realwear / Web</title>
+    <style>
+        .back {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: var(--primary-dark) !important;
+        }
+        #marker {
+            width: 50px;
+            height: 50px;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(255, 255, 0, .7);
+            border-radius: 100px;
+            /* transform: scale(2); */
+        }
+    </style>
 </head>
 <body>
 
-    <header id="chatHeader">
-        <a>
-            <button class="back">Manifest Web</button>
-        </a>
-        <a class="current chat">
-            <!-- <div class="avatar small"><span>B</span></div> -->
-            <!-- Rimma Robertson -->
-        </a>
-        <!-- <button onclick="showMessageBoard()">Message</button> -->
-        <!-- <button class="accent" onclick="window.location = './call.html'"><img src="./img/phone.png" class="icon"> Call</button> -->
-    </header>
-    
-    <div>
-        <video autoplay width="100%" style="position: relative; top: -30px;"></video>
-    </div>
-    <div id="messageBoard">
-        <div>
-            <button>Voice</button>
-            <button>Attach</button>
-            <button class="accent blue" onclick="showMessageBoard()">Send</button>
-            <button onclick="showMessageBoard()">Cancel</button>
-        </div>
-        <span>Enter text</span>
-    </div>
+    <button class="back">Manifest Web</button>
+    <div><video autoplay width="100%"></video></div>
+    <div id="marker"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/peerjs@1.2.0/dist/peerjs.min.js"></script>
     <script>
+
+
 
 function showMessageBoard() {
     messageBoard.classList.toggle('active')
@@ -90,6 +89,16 @@ peer.on("connection", async c => {
 });
 
 
+document.addEventListener('mousemove', e => {
+    marker.style.top = e.clientY - 20 + 'px'
+    marker.style.left = e.clientX - 20 + 'px'
+})
+marker.addEventListener('mousedown', e => {
+    marker.style.backgroundColor = 'blue'
+})
+marker.addEventListener('mouseup', e => {
+    marker.style.backgroundColor = 'rgba(255, 255, 0, .7)'
+})
 
 
     </script>
