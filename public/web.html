@@ -34,6 +34,14 @@
             background-color: rgba(255, 255, 0, .7);
             border-radius: 100px;
         }
+        #myFace {
+            width: 200px;
+            box-shadow: 0px 2px 40px rgba(0, 0, 0, 0.4);
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
@@ -44,7 +52,8 @@
         <label>Cursor radius: </label>
         <input type="number" value="1" min="0" step="0.5" max="3" onchange="marker.setRadius(event)" />
     </header>
-    <div><video autoplay width="100%"></video></div>
+    <div><video id="operatorView" autoplay width="100%"></video></div>
+    <video id="myFace" autoplay></video>
     <div id="marker"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/peerjs@1.2.0/dist/peerjs.min.js"></script>
@@ -75,9 +84,10 @@ peer.on("call", call => {
     conn = call
     navigator.getUserMedia(callOption,
     stream => {
-        call.answer(stream);
+        myFace.srcObject = stream
+        call.answer(stream)
         call.on("stream", remoteStream => {
-            document.querySelector("video").srcObject = remoteStream;
+            operatorView.srcObject = remoteStream
         });
     },
     err => console.log("Failed to get local stream", err)
