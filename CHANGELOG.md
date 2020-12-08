@@ -1,3 +1,9 @@
+# 0.7
+
+- [x] feat: speech recognizer at web
+
+
+
 # 0.6
 **Share asset info**
 

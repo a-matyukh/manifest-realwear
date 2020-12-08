@@ -8,9 +8,7 @@
     <title>Manifest Realwear / List</title>
 </head>
 <body>
-
 <div id="app" v-cloak>
-
     <div id="tabs">
         <button class="current">Last</button>
         <button>Contacts</button>
@@ -130,6 +128,7 @@
         <div>
             <p>Manifest Connect ver. 1.0 </p>
             <span>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</span>
+            <p><label for="recognitionState"><input id="recognitionState" type="checkbox" onchange="changeRecognitionState()"> <span>Enable speech recognition</span></label></p>
             <p>
                 <button onclick="window.location = './router.html'">Router</button>
                 <button onclick="window.location = './models.html'">Models</button>
@@ -139,9 +138,12 @@
     </main>
 
     <button id="scrollToTop" @click="toTop">Scroll To Top</button>
-    
 </div>
 
+    <div id="snackbar"></div>
+    <script src="./js/snackbar.js"></script>
+    <script src="./js/vuices.js"></script>
+    
     <script src="./db/last.js"></script>
     <script src="./db/contacts.js"></script>
     <script type="text/javascript" src="https://unpkg.com/vue@next"></script>

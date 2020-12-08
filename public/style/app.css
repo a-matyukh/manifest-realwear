@@ -8,6 +8,7 @@
 @import './step.css';
 @import './note.css';
 @import './call.css';
+@import './snackbar.css';
 
 :root {
     --bg: #f3f3f3;
