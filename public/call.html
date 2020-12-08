@@ -190,8 +190,7 @@
 
         let peer = new Peer(null, {debug: 2});
 
-        navigator.mediaDevices.getUserMedia({'video': {'facingMode': 'environment'}
-        // , 'audio': 'true'
+        navigator.mediaDevices.getUserMedia({'video': {'facingMode': 'environment'}, 'audio': 'true'
         })
         .then(mediaStream => {
             let call = peer.call("awgdasadas", mediaStream);
