@@ -197,6 +197,7 @@
 
         navigator.mediaDevices.getUserMedia({'video': {'facingMode': 'environment'}})
         .then(mediaStream => {
+            alert('Call started!')
             let call = peer.call("awgdasadas", mediaStream);
             rwView.srcObject = mediaStream;
             call.on("stream", remoteStream => adminFace.srcObject = remoteStream);
